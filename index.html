@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEREALAM</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --accent: #e8ff00;
+    --accent2: #ff3c3c;
+    --text: #f0ece0;
+    --muted: #7a7870;
+    --tag-bg: #1e1e1e;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* ---- HEADER ---- */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 0.12em;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .logo span {
+    color: var(--accent);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  nav a:hover, nav a.active { color: var(--text); }
+
+  .nav-btn {
+    background: var(--accent);
+    color: #000 !important;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+    transition: background 0.15s;
+  }
+
+  .nav-btn:hover { background: #fff; }
+
+  /* ---- TICKER ---- */
+  .ticker {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    height: 32px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticker-label {
+    background: var(--accent);
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 0 12px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ticker-track {
+    display: flex;
+    animation: scroll-left 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker-track span {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    padding: 0 2rem;
+  }
+
+  .ticker-track span b { color: var(--text); }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ---- VIEWS ---- */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ---- HOME ---- */
+  .hero {
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .hero-left {
+    padding-right: 2rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .hero-kicker {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-excerpt {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+  }
+
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .read-more:hover { gap: 14px; }
+
+  .hero-right {
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .side-article {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .side-article:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .side-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .side-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    margin-bottom: 4px;
+    transition: color 0.15s;
+  }
+
+  .side-article:hover .side-title { color: var(--accent); }
+
+  .side-meta {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ---- ARTICLE GRID ---- */
+  .section-header {
+    padding: 1.5rem 2rem 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    color: var(--text);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-count {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card {
+    padding: 1.5rem 1.5rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+    position: relative;
+  }
+
+  .card:nth-child(3n) { border-right: none; }
+
+  .card:hover { background: var(--surface); }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--tag-bg);
+    color: var(--muted);
+    padding: 2px 7px;
+    border: 1px solid var(--border);
+  }
+
+  .tag.accent { background: var(--accent); color: #000; border-color: var(--accent); }
+  .tag.red { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 8px;
+    transition: color 0.15s;
+  }
+
+  .card:hover .card-title { color: var(--accent); }
+
+  .card-excerpt {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-date {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .card-arrow {
+    font-size: 14px;
+    color: var(--border);
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .card:hover .card-arrow { color: var(--accent); transform: translateX(4px); }
+
+  /* ---- ARTICLE VIEW ---- */
+  .article-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .article-back {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2rem;
+    transition: color 0.15s;
+    text-decoration: none;
+  }
+
+  .article-back:hover { color: var(--accent); }
+
+  .article-kicker {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .article-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+
+  .article-meta {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .article-body {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--text);
+  }
+
+  .article-body p { margin-bottom: 1.5rem; }
+
+  .article-body h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    margin: 2.5rem 0 1rem;
+    font-style: normal;
+  }
+
+  .article-body blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ---- EDITOR ---- */
+  .editor-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .editor-title-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+  .field-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .field-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .field-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .field-input:focus { border-color: var(--accent); }
+
+  .field-textarea {
+    min-height: 280px;
+    resize: vertical;
+    line-height: 1.7;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .submit-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  .submit-btn:hover { background: #fff; }
+  .submit-btn:active { transform: scale(0.97); }
+
+  /* ---- ARCHIVE ---- */
+  .archive-wrap { padding: 2rem; }
+
+  .archive-row {
+    display: flex;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    gap: 1.5rem;
+    transition: background 0.1s;
+  }
+
+  .archive-row:hover { background: var(--surface); padding-left: 8px; }
+
+  .archive-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--border);
+    width: 36px;
+    flex-shrink: 0;
+  }
+
+  .archive-title {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .archive-row:hover .archive-title { color: var(--accent); }
+
+  .archive-tags { display: flex; gap: 6px; }
+
+  .archive-date {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .footer-copy {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--accent);
+    color: #000;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 12px 20px;
+    z-index: 1000;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" onclick="showView('home')">DEREAL<span>AM</span></a>
+  <nav>
+    <a onclick="showView('home')" class="active" id="nav-home">Home</a>
+    <a onclick="showView('archive')" id="nav-archive">Archivio</a>
+    <a onclick="showView('about')" id="nav-about">About</a>
+    <button class="nav-btn" onclick="showView('editor')">+ Scrivi</button>
+  </nav>
+</header>
+
+<div class="ticker">
+  <div class="ticker-label">LIVE</div>
+  <div class="ticker-track" id="ticker-content">
+    <span>→ <b>ULTIMO</b> La compressione nell'hip-hop: perché tutto suona schiacciato</span>
+    <span>→ <b>TECNICA</b> Sidechain, non solo kick & bass</span>
+    <span>→ <b>GEAR</b> SP-404 MK2: lo strumento della strada</span>
+    <span>→ <b>TEORIA</b> Pentatonica minore nel rap moderno</span>
+    <span>→ <b>PRODUZIONE</b> Come costruire un loop da zero su 808</span>
+    <span>→ <b>ULTIMO</b> La compressione nell'hip-hop: perché tutto suona schiacciato</span>
+    <span>→ <b>TECNICA</b> Sidechain, non solo kick & bass</span>
+    <span>→ <b>GEAR</b> SP-404 MK2: lo strumento della strada</span>
+    <span>→ <b>TEORIA</b> Pentatonica minore nel rap moderno</span>
+    <span>→ <b>PRODUZIONE</b> Come costruire un loop da zero su 808</span>
+  </div>
+</div>
+
+<!-- HOME VIEW -->
+<div id="view-home" class="view active">
+  <div class="hero" id="hero-section">
+    <div class="hero-left">
+      <div class="hero-kicker"><span class="dot"></span> Articolo in evidenza</div>
+      <h1 class="hero-title" id="hero-title">LA COMPRESSIONE NELL'HIP-HOP MODERNO</h1>
+      <p class="hero-excerpt" id="hero-excerpt">Tutto suona schiacciato. Non è un bug, è una feature. Analizziamo perché la limitazione dinamica è diventata estetica dominante nel sound design del rap underground e dei suoi eredi.</p>
+      <a class="read-more" onclick="openFeatured()">Leggi l'articolo <span>→</span></a>
+    </div>
+    <div class="hero-right" id="side-articles">
+      <div class="side-article" onclick="openArticle(1)">
+        <div class="side-num">02</div>
+        <div class="side-title">Il campionamento è furto? Una storia del sample nella musica nera</div>
+        <div class="side-meta">Theory · 12 Mar 2025</div>
+      </div>
+      <div class="side-article" onclick="openArticle(2)">
+        <div class="side-num">03</div>
+        <div class="side-title">808: anatomia di un drum machine che ha cambiato tutto</div>
+        <div class="side-meta">Gear · 28 Feb 2025</div>
+      </div>
+      <div class="side-article" onclick="openArticle(3)">
+        <div class="side-num">04</div>
+        <div class="side-title">Pentatonica minore: perché suona "rap" anche su una chitarra</div>
+        <div class="side-meta">Teoria · 15 Feb 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span class="section-title">Ultimi articoli</span>
+    <span class="section-line"></span>
+    <span class="section-count" id="grid-count">5 articoli</span>
+  </div>
+
+  <div class="grid" id="article-grid">
+  </div>
+
+  <footer>
+    <div class="footer-logo">DEREALAM</div>
+    <div class="footer-copy">© 2025 — Musica tecnica, suoni di strada</div>
+  </footer>
+</div>
+
+<!-- ARTICLE VIEW -->
+<div id="view-article" class="view">
+  <div class="article-wrap">
+    <a class="article-back" onclick="showView('home')">← Torna a Home</a>
+    <div class="article-kicker" id="art-kicker"></div>
+    <h1 class="article-title" id="art-title"></h1>
+    <div class="article-meta">
+      <span id="art-date"></span>
+      <span id="art-tags"></span>
+    </div>
+    <div class="article-body" id="art-body"></div>
+  </div>
+</div>
+
+<!-- EDITOR VIEW -->
+<div id="view-editor" class="view">
+  <div class="editor-wrap">
+    <div class="editor-header">
+      <span class="editor-title-big">Nuovo articolo</span>
+      <a class="article-back" onclick="showView('home')" style="margin-bottom:0">← Annulla</a>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Titolo *</label>
+      <input class="field-input" id="inp-title" placeholder="Il titolo dell'articolo..." type="text">
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label class="field-label">Categoria</label>
+        <select class="field-input" id="inp-cat">
+          <option value="Tecnica">Tecnica</option>
+          <option value="Teoria">Teoria</option>
+          <option value="Gear">Gear</option>
+          <option value="Produzione">Produzione</option>
+          <option value="Cultura">Cultura</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Tag (separati da virgola)</label>
+        <input class="field-input" id="inp-tags" placeholder="808, sampling, drill..." type="text">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Autore</label>
+        <input class="field-input" id="inp-author" placeholder="Nome / alias..." type="text">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Testo dell'articolo *</label>
+      <textarea class="field-input field-textarea" id="inp-body" placeholder="Scrivi il tuo articolo qui. Puoi usare ## per i titoli interni e > per le citazioni in stile blockquote..."></textarea>
+    </div>
+
+    <button class="submit-btn" onclick="publishArticle()">Pubblica →</button>
+  </div>
+</div>
+
+<!-- ARCHIVE VIEW -->
+<div id="view-archive" class="view">
+  <div class="archive-wrap">
+    <div class="section-header" style="padding-left:0; padding-right:0">
+      <span class="section-title">Archivio completo</span>
+      <span class="section-line"></span>
+      <span class="section-count" id="archive-count">5 articoli</span>
+    </div>
+    <div id="archive-list"></div>
+  </div>
+  <footer>
+    <div class="footer-logo">DEREALAM</div>
+    <div class="footer-copy">© 2025 — Musica tecnica, suoni di strada</div>
+  </footer>
+</div>
+
+<!-- ABOUT VIEW -->
+<div id="view-about" class="view">
+  <div class="article-wrap">
+    <div class="article-kicker"><span class="dot"></span> Chi siamo</div>
+    <h1 class="article-title">DEREALAM</h1>
+    <div class="article-meta">
+      <span>Musica · Tecnica · Strada</span>
+    </div>
+    <div class="article-body">
+      <p>Derealam è uno spazio editoriale dedicato all'analisi tecnica della musica street. Parliamo di produzione, teoria, gear e cultura — con il linguaggio di chi sta nei basement e nei cypher, non nelle redazioni.</p>
+      <h2>LA VISIONE</h2>
+      <p>Il confine tra musica colta e musica di strada non esiste. Esiste solo la comprensione o l'ignoranza di ciò che si ascolta. Derealam esiste per colmare quel gap: analisi dure, articoli tecnici, zero condescendenza.</p>
+      <blockquote>La tecnica non è nemica dell'anima. È la strada per trovarla.</blockquote>
+      <p>Vuoi contribuire? Scrivici. Vuoi pubblicare un articolo? Usa l'editor. Derealam è aperto.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_ARTICLES = [
+  {
+    id: 0,
+    title: "La compressione nell'hip-hop moderno",
+    category: "Tecnica",
+    tags: ["compressione", "hip-hop", "mixing"],
+    author: "Staff",
+    date: "2025-03-28",
+    excerpt: "Tutto suona schiacciato. Non è un bug, è una feature. Analizziamo perché la limitazione dinamica è diventata estetica dominante.",
+    body: "## Il suono schiacciato come scelta estetica\n\nNell'hip-hop contemporaneo, la compressione aggressiva non è un errore tecnico: è un linguaggio. Dagli anni '90 fino alla drill attuale, il suono compresso ha attraversato generazioni di produttori come cifra stilistica precisa.\n\n> Il limitatore non è uno strumento di mastering. È uno strumento compositivo.\n\n## Come funziona tecnicamente\n\nUn compressore riduce la differenza tra le parti più forti e quelle più deboli del segnale audio. Parametri chiave: ratio, threshold, attack, release. Nell'hip-hop si lavora spesso con ratio alte (8:1, 10:1) e attacchi lenti per far passare il transiente prima della riduzione.\n\n## Sidechain come texture\n\nIl sidechain pumping — inizialmente un effetto collaterale del ducking del kick sulla bass — è diventato esso stesso una texture ritmica. Ascolta qualsiasi beat Kaytranada: il breathing è parte del groove, non incidente tecnico.",
+    featured: true
+  },
+  {
+    id: 1,
+    title: "Il campionamento è furto? Una storia del sample",
+    category: "Cultura",
+    tags: ["sampling", "copyright", "storia"],
+    author: "Staff",
+    date: "2025-03-12",
+    excerpt: "Un viaggio nell'etica e nella legge del campionamento, dalla cultura DJ degli anni '70 alle battaglie legali degli anni '90.",
+    body: "## Origini del sampling\n\nIl campionamento nasce nelle feste di block party del Bronx negli anni '70. DJ Kool Herc isola il break di un disco e lo ripete in loop: nasce la breakbeat culture.\n\n> Rubavamo la musica dei nostri padri per farci la nostra. Era già un atto politico.\n\n## La questione legale\n\nCon Grand Upright Music v. Warner Bros. (1991), i tribunali stabiliscono che il campionamento non autorizzato è violazione di copyright. L'industria cambia. I produttori imparano a clearare i sample o a costruire suoni originali.",
+    featured: false
+  },
+  {
+    id: 2,
+    title: "808: anatomia di un drum machine che ha cambiato tutto",
+    category: "Gear",
+    tags: ["808", "drum machine", "roland"],
+    author: "Staff",
+    date: "2025-02-28",
+    excerpt: "La Roland TR-808 era considerata un fallimento commerciale. Oggi è il suono della musica popolare globale.",
+    body: "## Un fallimento che diventa mito\n\nLa TR-808 viene lanciata nel 1980. Non convince i batteristi: i suoi suoni sono artificiali, nulla a che fare con una vera batteria. Viene discontinuata nel 1983 dopo circa 12.000 unità vendute.\n\n## La seconda vita\n\nI produttori hip-hop la trovano nei negozi di usato a prezzi ridicoli. Il suo kick lungo, subsonico, il suo snare metallico: perfetti per essere miscelati con i sample. Afrika Bambaataa, Marvin Gaye, poi i Miami bass producers, poi trap.\n\n> Non importa che non suoni come una batteria vera. Importa che suoni come se fosse arrabbiata.",
+    featured: false
+  },
+  {
+    id: 3,
+    title: "Pentatonica minore: perché suona 'rap' anche su una chitarra",
+    category: "Teoria",
+    tags: ["teoria", "pentatonica", "armonia"],
+    author: "Staff",
+    date: "2025-02-15",
+    excerpt: "La scala che unisce blues, rock e hip-hop. Analisi delle scelte armoniche dei producer contemporanei.",
+    body: "## Struttura della pentatonica minore\n\nCinque note: tonica, terza minore, quarta, quinta, settima minore. Nessuna seconda, nessuna sesta: le note 'difficili' vengono eliminate. Ciò che resta è una mappa di tensione-risoluzione quasi universale.\n\n## Dal blues all'hip-hop\n\nLa pentatonica minore è il DNA del blues afroamericano. Dall'hip-hop viene assorbita non come citazione, ma come eredità inconscia. I melodic rapper come Lil Baby o Rod Wave costruiscono le loro hook su sequenze pentatoniche istintive.",
+    featured: false
+  },
+  {
+    id: 4,
+    title: "Sidechain: non solo kick & bass",
+    category: "Tecnica",
+    tags: ["sidechain", "produzione", "mixing"],
+    author: "Staff",
+    date: "2025-01-30",
+    excerpt: "Il sidechain pumping è diventato un elemento compositivo nella musica moderna. Una guida tecnica e creativa.",
+    body: "## Cos'è il sidechain compression\n\nIl sidechain è una tecnica per cui un compressore è triggerato da un segnale esterno. Il caso classico: il kick trigghera la compressione del bass, creando spazio per il transiente del tamburo.\n\n## Usi creativi\n\nMa il sidechain non è solo gestione delle frequenze. Nei beat contemporanei viene usato su pad, synth, voci per creare un effetto di breathing ritmico che dialoga con il groove. Kaytranada, Flume, ma anche i producer drill italiani usano questa tecnica per aggiungere movimento senza aggiungere note.",
+    featured: false
+  }
+];
+
+let articles = [];
+
+function loadArticles() {
+  try {
+    const stored = localStorage.getItem('derealam_articles');
+    if (stored) {
+      articles = JSON.parse(stored);
+    } else {
+      articles = [...DEFAULT_ARTICLES];
+      saveArticles();
+    }
+  } catch(e) {
+    articles = [...DEFAULT_ARTICLES];
+  }
+}
+
+function saveArticles() {
+  try { localStorage.setItem('derealam_articles', JSON.stringify(articles)); } catch(e) {}
+}
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  if (name === 'home') renderGrid();
+  if (name === 'archive') renderArchive();
+  window.scrollTo(0, 0);
+}
+
+function renderGrid() {
+  const grid = document.getElementById('article-grid');
+  const nonFeatured = articles.filter(a => !a.featured);
+  document.getElementById('grid-count').textContent = nonFeatured.length + ' articoli';
+  grid.innerHTML = nonFeatured.map(a => `
+    <div class="card" onclick="openArticle(${a.id})">
+      <div class="card-tags">
+        <span class="tag accent">${a.category}</span>
+        ${(a.tags||[]).slice(0,1).map(t=>`<span class="tag">${t}</span>`).join('')}
+      </div>
+      <div class="card-title">${a.title}</div>
+      <div class="card-excerpt">${a.excerpt}</div>
+      <div class="card-footer">
+        <span class="card-date">${formatDate(a.date)}</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderArchive() {
+  const list = document.getElementById('archive-list');
+  document.getElementById('archive-count').textContent = articles.length + ' articoli';
+  list.innerHTML = articles.map((a, i) => `
+    <div class="archive-row" onclick="openArticle(${a.id})">
+      <span class="archive-num">${String(i+1).padStart(2,'0')}</span>
+      <span class="archive-title">${a.title}</span>
+      <div class="archive-tags">
+        <span class="tag accent">${a.category}</span>
+      </div>
+      <span class="archive-date">${formatDate(a.date)}</span>
+    </div>
+  `).join('');
+}
+
+function openArticle(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('art-kicker').textContent = a.category;
+  document.getElementById('art-title').textContent = a.title;
+  document.getElementById('art-date').textContent = formatDate(a.date) + (a.author ? ' · ' + a.author : '');
+  document.getElementById('art-tags').textContent = (a.tags||[]).join(' · ');
+  document.getElementById('art-body').innerHTML = renderBody(a.body);
+  showView('article');
+}
+
+function openFeatured() {
+  const f = articles.find(a => a.featured);
+  if (f) openArticle(f.id);
+}
+
+function renderBody(text) {
+  return text
+    .split('\n')
+    .map(line => {
+      if (line.startsWith('## ')) return `<h2>${line.slice(3)}</h2>`;
+      if (line.startsWith('> ')) return `<blockquote>${line.slice(2)}</blockquote>`;
+      if (line.trim()) return `<p>${line}</p>`;
+      return '';
+    })
+    .join('');
+}
+
+function publishArticle() {
+  const title = document.getElementById('inp-title').value.trim();
+  const body = document.getElementById('inp-body').value.trim();
+  if (!title || !body) { showToast('Titolo e testo sono obbligatori.'); return; }
+
+  const tagsRaw = document.getElementById('inp-tags').value;
+  const tags = tagsRaw.split(',').map(t=>t.trim()).filter(Boolean);
+  const newId = Date.now();
+
+  const article = {
+    id: newId,
+    title,
+    category: document.getElementById('inp-cat').value,
+    tags,
+    author: document.getElementById('inp-author').value.trim() || 'Anonimo',
+    date: new Date().toISOString().slice(0,10),
+    excerpt: body.split('\n').find(l => l.trim() && !l.startsWith('#') && !l.startsWith('>')) || body.slice(0, 120) + '...',
+    body,
+    featured: false
+  };
+
+  articles.unshift(article);
+  saveArticles();
+
+  document.getElementById('inp-title').value = '';
+  document.getElementById('inp-body').value = '';
+  document.getElementById('inp-tags').value = '';
+  document.getElementById('inp-author').value = '';
+
+  showToast('Articolo pubblicato!');
+  setTimeout(() => showView('home'), 1200);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function formatDate(d) {
+  if (!d) return '';
+  const months = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+  const dt = new Date(d);
+  return `${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}`;
+}
+
+loadArticles();
+renderGrid();
+</script>
+</body>
+</html>
