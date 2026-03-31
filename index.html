@@ -169,7 +169,8 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 @media(max-width:768px){
   header{padding:0 1rem}
   .logo{font-size:2rem}
-  nav .nav-links{display:none}
+  nav .nav-links{display:none!important}
+  nav .nav-btn{display:none!important}
   .hamburger{display:flex}
 
   .hero{grid-template-columns:1fr;padding:2rem 1rem}
@@ -215,7 +216,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <a onclick="showView('home')" id="nav-home" class="active">Home</a>
       <a onclick="showView('archive')" id="nav-archive">Archivio</a>
       <a onclick="showView('about')" id="nav-about">About</a>
-      <button class="nav-btn" onclick="showView('editor')">+ Scrivi</button>
+      <button class="nav-btn" onclick="showView('editor')" style="display:none">+ Scrivi</button>
       <button class="nav-btn admin-btn" id="admin-nav-btn" onclick="handleAdminClick()">⚙ Admin</button>
     </span>
     <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -464,6 +465,7 @@ function doLogin(){
   const pw = document.getElementById('login-pw').value;
   if(pw === ADMIN_PASSWORD){
     adminLoggedIn = true;
+    document.getElementById('scrivi-btn').style.display='';
     document.getElementById('login-pw').value='';
     document.getElementById('login-error').style.display='none';
     document.getElementById('admin-nav-btn').style.color='var(--accent)';
@@ -477,6 +479,7 @@ window.doLogin = doLogin;
 function doLogout(){
   adminLoggedIn = false;
   document.getElementById('admin-nav-btn').style.color='';
+  document.getElementById('scrivi-btn').style.display='none';
   showView('home');
   showToast('Uscito dal pannello admin.');
 }
