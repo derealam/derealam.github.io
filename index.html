@@ -315,8 +315,10 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 <div id="view-adminlogin" class="view">
   <div class="login-wrap">
     <div class="login-box">
-      <div class="login-title">Admin</div>
-       <a class="article-back" onclick="showView('home')" style="margin-bottom:0">← Annulla</a>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+        <div class="login-title">Admin</div>
+        <button onclick="showView('home')" style="background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;transition:color 0.15s" onmouseover="this.style.color='var(--accent2)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+      </div>
       <div class="login-sub">Accesso riservato</div>
       <div class="field-group">
         <label class="field-label">Password</label>
