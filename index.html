@@ -216,7 +216,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <a onclick="showView('home')" id="nav-home" class="active">Home</a>
       <a onclick="showView('archive')" id="nav-archive">Archivio</a>
       <a onclick="showView('about')" id="nav-about">About</a>
-      <button class="nav-btn" onclick="showView('editor')" style="display:none">+ Scrivi</button>
+      <button class="nav-btn" id="scrivi-btn" onclick="showView('editor')" style="display:none">+ Scrivi</button>
       <button class="nav-btn admin-btn" id="admin-nav-btn" onclick="handleAdminClick()">⚙ Admin</button>
     </span>
     <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -229,7 +229,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   <a onclick="showView('home');closeMobileMenu()">Home</a>
   <a onclick="showView('archive');closeMobileMenu()">Archivio</a>
   <a onclick="showView('about');closeMobileMenu()">About</a>
-  <button class="mob-write" onclick="showView('editor');closeMobileMenu()">+ Scrivi articolo</button>
+  <button class="mob-write" id="scrivi-mob-btn" onclick="showView('editor');closeMobileMenu()" style="display:none">+ Scrivi articolo</button>
   <button onclick="handleAdminClick();closeMobileMenu()">⚙ Admin</button>
 </div>
 
@@ -316,6 +316,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   <div class="login-wrap">
     <div class="login-box">
       <div class="login-title">Admin</div>
+       <a class="article-back" onclick="showView('home')" style="margin-bottom:0">← Annulla</a>
       <div class="login-sub">Accesso riservato</div>
       <div class="field-group">
         <label class="field-label">Password</label>
@@ -466,6 +467,7 @@ function doLogin(){
   if(pw === ADMIN_PASSWORD){
     adminLoggedIn = true;
     document.getElementById('scrivi-btn').style.display='';
+    document.getElementById('scrivi-mob-btn').style.display='';
     document.getElementById('login-pw').value='';
     document.getElementById('login-error').style.display='none';
     document.getElementById('admin-nav-btn').style.color='var(--accent)';
@@ -480,6 +482,7 @@ function doLogout(){
   adminLoggedIn = false;
   document.getElementById('admin-nav-btn').style.color='';
   document.getElementById('scrivi-btn').style.display='none';
+  document.getElementById('scrivi-mob-btn').style.display='none';
   showView('home');
   showToast('Uscito dal pannello admin.');
 }
