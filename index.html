@@ -14,10 +14,11 @@
 body{background:var(--bg);color:var(--text);font-family:'Space Mono',monospace;font-size:14px;line-height:1.6;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.4}
 
-header{border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:stretch;justify-content:space-between;height:64px}
+/* HEADER */
+header{border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:stretch;justify-content:space-between;height:64px;position:relative}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;letter-spacing:0.12em;color:var(--text);display:flex;align-items:center;text-decoration:none;cursor:pointer}
 .logo span{color:var(--accent)}
-nav{display:flex;align-items:center;gap:2rem}
+nav{display:flex;align-items:center;gap:1.5rem}
 nav a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:color 0.15s}
 nav a:hover,nav a.active{color:var(--text)}
 .nav-btn{background:var(--accent);color:#000!important;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Space Mono',monospace;transition:background 0.15s}
@@ -25,6 +26,16 @@ nav a:hover,nav a.active{color:var(--text)}
 .nav-btn.admin-btn{background:var(--surface2);color:var(--muted)!important;border:1px solid var(--border)}
 .nav-btn.admin-btn:hover{background:var(--border);color:var(--text)!important}
 
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.hamburger span{width:22px;height:2px;background:var(--text);display:block;transition:all 0.2s}
+.mobile-menu{display:none;position:absolute;top:64px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);z-index:50;flex-direction:column;padding:1rem 2rem;gap:1rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a,.mobile-menu button{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;text-decoration:none;background:none;border:none;font-family:'Space Mono',monospace;text-align:left;padding:4px 0}
+.mobile-menu a:hover,.mobile-menu button:hover{color:var(--accent)}
+.mobile-menu .mob-write{color:var(--accent)!important;font-weight:700}
+
+/* TICKER */
 .ticker{border-bottom:1px solid var(--border);background:var(--surface);overflow:hidden;height:32px;display:flex;align-items:center}
 .ticker-label{background:var(--accent);color:#000;font-size:10px;font-weight:700;letter-spacing:0.15em;padding:0 12px;height:100%;display:flex;align-items:center;white-space:nowrap;flex-shrink:0}
 .ticker-track{display:flex;animation:scroll-left 30s linear infinite;white-space:nowrap}
@@ -34,6 +45,11 @@ nav a:hover,nav a.active{color:var(--text)}
 
 .view{display:none}.view.active{display:block}
 
+/* LOADING */
+.loading{text-align:center;padding:4rem 2rem;color:var(--muted);font-size:12px;letter-spacing:0.15em;text-transform:uppercase}
+.loading::after{content:'';display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-left:8px;animation:pulse 1s ease-in-out infinite}
+
+/* HERO */
 .hero{border-bottom:1px solid var(--border);padding:3rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:0}
 .hero-left{padding-right:2rem;border-right:1px solid var(--border)}
 .hero-kicker{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
@@ -54,14 +70,14 @@ nav a:hover,nav a.active{color:var(--text)}
 .section-line{flex:1;height:1px;background:var(--border)}
 .section-count{font-size:10px;color:var(--muted);letter-spacing:0.1em}
 
+/* GRID */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
-.card{padding:1.5rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;position:relative}
+.card{padding:1.5rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s}
 .card:nth-child(3n){border-right:none}
 .card:hover{background:var(--surface)}
 .card-tags{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
 .tag{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;background:var(--tag-bg);color:var(--muted);padding:2px 7px;border:1px solid var(--border)}
 .tag.accent{background:var(--accent);color:#000;border-color:var(--accent)}
-.tag.red{background:var(--accent2);color:#fff;border-color:var(--accent2)}
 .card-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.04em;line-height:1.1;color:var(--text);margin-bottom:8px;transition:color 0.15s}
 .card:hover .card-title{color:var(--accent)}
 .card-excerpt{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:1rem;font-family:'DM Serif Display',serif;font-style:italic}
@@ -70,17 +86,19 @@ nav a:hover,nav a.active{color:var(--text)}
 .card-arrow{font-size:14px;color:var(--border);transition:color 0.15s,transform 0.15s}
 .card:hover .card-arrow{color:var(--accent);transform:translateX(4px)}
 
+/* ARTICLE */
 .article-wrap{max-width:680px;margin:0 auto;padding:3rem 2rem}
 .article-back{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;margin-bottom:2rem;transition:color 0.15s;text-decoration:none}
 .article-back:hover{color:var(--accent)}
 .article-kicker{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem}
 .article-title{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:0.04em;line-height:0.95;color:var(--text);margin-bottom:1.25rem}
-.article-meta{font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1.5rem;align-items:center}
+.article-meta{font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
 .article-body{font-family:'DM Serif Display',serif;font-size:17px;line-height:1.9;color:var(--text)}
 .article-body p{margin-bottom:1.5rem}
 .article-body h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(--text);margin:2.5rem 0 1rem;font-style:normal}
 .article-body blockquote{border-left:3px solid var(--accent);padding-left:1.5rem;margin:2rem 0;color:var(--muted);font-style:italic}
 
+/* EDITOR */
 .editor-wrap{max-width:780px;margin:0 auto;padding:3rem 2rem}
 .editor-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
 .editor-title-big{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.08em;color:var(--text)}
@@ -93,22 +111,26 @@ nav a:hover,nav a.active{color:var(--text)}
 .submit-btn{background:var(--accent);color:#000;border:none;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:12px 28px;cursor:pointer;transition:background 0.15s,transform 0.1s}
 .submit-btn:hover{background:#fff}
 .submit-btn:active{transform:scale(0.97)}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed}
 
+/* ARCHIVE */
 .archive-wrap{padding:2rem}
-.archive-row{display:flex;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--border);cursor:pointer;gap:1.5rem;transition:all 0.1s}
+.archive-row{display:flex;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--border);cursor:pointer;gap:1rem;transition:all 0.1s;flex-wrap:wrap}
 .archive-row:hover{background:var(--surface);padding-left:8px}
 .archive-num{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--border);width:36px;flex-shrink:0}
-.archive-title{flex:1;font-size:14px;font-weight:700;color:var(--text);letter-spacing:0.02em}
+.archive-title{flex:1;font-size:14px;font-weight:700;color:var(--text);letter-spacing:0.02em;min-width:160px}
 .archive-row:hover .archive-title{color:var(--accent)}
 .archive-tags{display:flex;gap:6px}
 .archive-date{font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap}
 
+/* LOGIN */
 .login-wrap{max-width:400px;margin:6rem auto;padding:2rem}
 .login-box{background:var(--surface);border:1px solid var(--border);padding:2.5rem}
 .login-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.1em;margin-bottom:0.5rem}
 .login-sub{font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:2rem;text-transform:uppercase}
 .login-error{font-size:11px;color:var(--accent2);letter-spacing:0.08em;margin-top:8px;display:none}
 
+/* ADMIN */
 .admin-wrap{padding:2rem}
 .admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
 .admin-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.08em}
@@ -116,8 +138,8 @@ nav a:hover,nav a.active{color:var(--text)}
 .admin-table th{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--border);text-align:left}
 .admin-table td{padding:12px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle}
 .admin-table tr:hover td{background:var(--surface)}
-.admin-td-title{font-weight:700;color:var(--text);max-width:280px}
-.action-btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s;margin-right:4px}
+.admin-td-title{font-weight:700;color:var(--text);max-width:240px}
+.action-btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s;margin-right:4px;margin-bottom:4px}
 .action-btn:hover{border-color:var(--accent);color:var(--accent)}
 .action-btn.danger:hover{border-color:var(--accent2);color:var(--accent2)}
 .action-btn.featured-on{border-color:var(--accent);color:var(--accent)}
@@ -126,21 +148,62 @@ nav a:hover,nav a.active{color:var(--text)}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent);line-height:1}
 .stat-label{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px}
 
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:100;display:none;align-items:center;justify-content:center}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto}
 .modal-overlay.open{display:flex}
-.modal-box{background:var(--surface);border:1px solid var(--border);padding:2rem;width:90%;max-width:680px;max-height:90vh;overflow-y:auto}
+.modal-box{background:var(--surface);border:1px solid var(--border);padding:2rem;width:100%;max-width:680px;margin:auto}
 .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
 .modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.08em}
 .modal-close{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;font-family:'Space Mono',monospace}
 .modal-close:hover{color:var(--accent2)}
 
-footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-content:space-between;align-items:center;margin-top:2rem}
+footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-content:space-between;align-items:center;margin-top:2rem;flex-wrap:wrap;gap:1rem}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.1em;color:var(--muted)}
 .footer-copy{font-size:10px;color:var(--muted);letter-spacing:0.1em}
 .dot{width:6px;height:6px;background:var(--accent);display:inline-block;border-radius:50%;margin-right:4px;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.toast{position:fixed;bottom:2rem;right:2rem;background:var(--accent);color:#000;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;padding:12px 20px;z-index:200;transform:translateY(80px);opacity:0;transition:all 0.3s}
+.toast{position:fixed;bottom:2rem;right:1rem;left:1rem;max-width:360px;margin:0 auto;background:var(--accent);color:#000;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;padding:12px 20px;z-index:200;transform:translateY(80px);opacity:0;transition:all 0.3s;text-align:center}
 .toast.show{transform:translateY(0);opacity:1}
+
+/* ===== RESPONSIVE MOBILE ===== */
+@media(max-width:768px){
+  header{padding:0 1rem}
+  .logo{font-size:2rem}
+  nav .nav-links{display:none}
+  .hamburger{display:flex}
+
+  .hero{grid-template-columns:1fr;padding:2rem 1rem}
+  .hero-left{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:2rem;margin-bottom:2rem}
+  .hero-title{font-size:2.8rem}
+  .hero-right{padding-left:0}
+
+  .grid{grid-template-columns:1fr}
+  .card{border-right:none}
+  .card:nth-child(3n){border-right:none}
+
+  .section-header{padding:1rem}
+  .archive-wrap{padding:1rem}
+
+  .field-row{grid-template-columns:1fr}
+  .editor-wrap,.article-wrap,.login-wrap{padding:2rem 1rem}
+
+  .admin-wrap{padding:1rem}
+  .admin-stats{grid-template-columns:1fr 1fr}
+  .admin-table thead{display:none}
+  .admin-table tr{display:block;border-bottom:1px solid var(--border);padding:0.75rem 0}
+  .admin-table td{display:block;border:none;padding:4px 0}
+  .admin-td-title{max-width:100%}
+
+  .article-title{font-size:2.5rem}
+
+  .modal-overlay{padding:1rem 0.5rem}
+}
+
+@media(max-width:480px){
+  .hero-title{font-size:2.2rem}
+  .article-title{font-size:2rem}
+  .admin-stats{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -148,31 +211,60 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 <header>
   <a class="logo" onclick="showView('home')">DEREAL<span>AM</span></a>
   <nav>
-    <a onclick="showView('home')" id="nav-home" class="active">Home</a>
-    <a onclick="showView('archive')" id="nav-archive">Archivio</a>
-    <a onclick="showView('about')" id="nav-about">About</a>
-    <button class="nav-btn" onclick="showView('editor')">+ Scrivi</button>
-    <button class="nav-btn admin-btn" id="admin-nav-btn" onclick="handleAdminClick()">⚙ Admin</button>
+    <span class="nav-links" style="display:flex;align-items:center;gap:1.5rem">
+      <a onclick="showView('home')" id="nav-home" class="active">Home</a>
+      <a onclick="showView('archive')" id="nav-archive">Archivio</a>
+      <a onclick="showView('about')" id="nav-about">About</a>
+      <button class="nav-btn" onclick="showView('editor')">+ Scrivi</button>
+      <button class="nav-btn admin-btn" id="admin-nav-btn" onclick="handleAdminClick()">⚙ Admin</button>
+    </span>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 </header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="showView('home');closeMobileMenu()">Home</a>
+  <a onclick="showView('archive');closeMobileMenu()">Archivio</a>
+  <a onclick="showView('about');closeMobileMenu()">About</a>
+  <button class="mob-write" onclick="showView('editor');closeMobileMenu()">+ Scrivi articolo</button>
+  <button onclick="handleAdminClick();closeMobileMenu()">⚙ Admin</button>
+</div>
+
+<div class="ticker">
+  <div class="ticker-label">LIVE</div>
+  <div class="ticker-track">
+    <span>→ <b>ULTIMO</b> La compressione nell'hip-hop: perché tutto suona schiacciato</span>
+    <span>→ <b>TECNICA</b> Sidechain, non solo kick &amp; bass</span>
+    <span>→ <b>GEAR</b> SP-404 MK2: lo strumento della strada</span>
+    <span>→ <b>TEORIA</b> Pentatonica minore nel rap moderno</span>
+    <span>→ <b>PRODUZIONE</b> Come costruire un loop da zero su 808</span>
+    <span>→ <b>ULTIMO</b> La compressione nell'hip-hop: perché tutto suona schiacciato</span>
+    <span>→ <b>TECNICA</b> Sidechain, non solo kick &amp; bass</span>
+    <span>→ <b>GEAR</b> SP-404 MK2: lo strumento della strada</span>
+    <span>→ <b>TEORIA</b> Pentatonica minore nel rap moderno</span>
+    <span>→ <b>PRODUZIONE</b> Come costruire un loop da zero su 808</span>
+  </div>
+</div>
 
 <!-- HOME -->
 <div id="view-home" class="view active">
   <div class="hero">
     <div class="hero-left">
       <div class="hero-kicker"><span class="dot"></span> Articolo in evidenza</div>
-      <h1 class="hero-title" id="hero-title">LA COMPRESSIONE NELL'HIP-HOP MODERNO</h1>
-      <p class="hero-excerpt" id="hero-excerpt">Tutto suona schiacciato. Non è un bug, è una feature. Analizziamo perché la limitazione dinamica è diventata estetica dominante nel sound design del rap underground.</p>
+      <h1 class="hero-title" id="hero-title">DEREALAM</h1>
+      <p class="hero-excerpt" id="hero-excerpt">Caricamento in corso...</p>
       <a class="read-more" onclick="openFeatured()">Leggi l'articolo <span>→</span></a>
     </div>
-    <div class="hero-right" id="side-articles"></div>
+    <div class="hero-right" id="side-articles"><div class="loading">Caricamento</div></div>
   </div>
   <div class="section-header">
     <span class="section-title">Ultimi articoli</span>
     <span class="section-line"></span>
-    <span class="section-count" id="grid-count">0 articoli</span>
+    <span class="section-count" id="grid-count"></span>
   </div>
-  <div class="grid" id="article-grid"></div>
+  <div class="grid" id="article-grid"><div class="loading" style="grid-column:1/-1">Caricamento articoli</div></div>
   <footer><div class="footer-logo">DEREALAM</div><div class="footer-copy">© 2025 — Musica tecnica, suoni di strada</div></footer>
 </div>
 
@@ -200,8 +292,8 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <div class="field-group"><label class="field-label">Tag (virgola)</label><input class="field-input" id="inp-tags" placeholder="808, sampling..." type="text"></div>
       <div class="field-group"><label class="field-label">Autore</label><input class="field-input" id="inp-author" placeholder="Nome / alias..." type="text"></div>
     </div>
-    <div class="field-group"><label class="field-label">Testo * (usa ## per titoli, > per citazioni)</label><textarea class="field-input field-textarea" id="inp-body" placeholder="Scrivi qui..."></textarea></div>
-    <button class="submit-btn" onclick="publishArticle()">Pubblica →</button>
+    <div class="field-group"><label class="field-label">Testo * (## per titoli, > per citazioni)</label><textarea class="field-input field-textarea" id="inp-body" placeholder="Scrivi qui..."></textarea></div>
+    <button class="submit-btn" id="publish-btn" onclick="publishArticle()">Pubblica →</button>
   </div>
 </div>
 
@@ -211,9 +303,9 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
     <div class="section-header" style="padding-left:0;padding-right:0">
       <span class="section-title">Archivio completo</span>
       <span class="section-line"></span>
-      <span class="section-count" id="archive-count">0 articoli</span>
+      <span class="section-count" id="archive-count"></span>
     </div>
-    <div id="archive-list"></div>
+    <div id="archive-list"><div class="loading">Caricamento</div></div>
   </div>
   <footer><div class="footer-logo">DEREALAM</div><div class="footer-copy">© 2025 — Musica tecnica, suoni di strada</div></footer>
 </div>
@@ -258,8 +350,8 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <button class="action-btn danger" onclick="doLogout()">Esci</button>
     </div>
     <div class="admin-stats">
-      <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Articoli totali</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-cats">0</div><div class="stat-label">Categorie</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Articoli totali</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-cats">—</div><div class="stat-label">Categorie</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-featured">—</div><div class="stat-label">In evidenza</div></div>
     </div>
     <div class="section-header" style="padding-left:0;padding-right:0;margin-bottom:1rem">
@@ -269,7 +361,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
     </div>
     <table class="admin-table">
       <thead><tr><th>#</th><th>Titolo</th><th>Categoria</th><th>Data</th><th>Azioni</th></tr></thead>
-      <tbody id="admin-tbody"></tbody>
+      <tbody id="admin-tbody"><tr><td colspan="5" class="loading">Caricamento</td></tr></tbody>
     </table>
   </div>
   <footer><div class="footer-logo">DEREALAM</div><div class="footer-copy">© 2025 — Admin</div></footer>
@@ -295,33 +387,76 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 
 <div class="toast" id="toast"></div>
 
-<script>
-const ADMIN_PASSWORD = 'derealam2025musi';
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-const DEFAULT_ARTICLES = [
-  {id:1,title:"La compressione nell'hip-hop moderno",category:"Tecnica",tags:["compressione","hip-hop","mixing"],author:"Staff",date:"2025-03-28",excerpt:"Tutto suona schiacciato. Non è un bug, è una feature. Analizziamo perché la limitazione dinamica è diventata estetica dominante.",body:"## Il suono schiacciato come scelta estetica\n\nNell'hip-hop contemporaneo, la compressione aggressiva non è un errore tecnico: è un linguaggio. Dagli anni '90 fino alla drill attuale, il suono compresso ha attraversato generazioni di produttori come cifra stilistica precisa.\n\n> Il limitatore non è uno strumento di mastering. È uno strumento compositivo.\n\n## Come funziona tecnicamente\n\nUn compressore riduce la differenza tra le parti più forti e quelle più deboli del segnale audio. Parametri chiave: ratio, threshold, attack, release. Nell'hip-hop si lavora spesso con ratio alte (8:1, 10:1) e attacchi lenti per far passare il transiente prima della riduzione.\n\n## Sidechain come texture\n\nIl sidechain pumping è diventato esso stesso una texture ritmica. Ascolta qualsiasi beat Kaytranada: il breathing è parte del groove, non incidente tecnico.",featured:true},
-  {id:2,title:"Il campionamento è furto? Una storia del sample",category:"Cultura",tags:["sampling","copyright","storia"],author:"Staff",date:"2025-03-12",excerpt:"Un viaggio nell'etica e nella legge del campionamento, dalla cultura DJ degli anni '70 alle battaglie legali degli anni '90.",body:"## Origini del sampling\n\nIl campionamento nasce nelle feste di block party del Bronx negli anni '70. DJ Kool Herc isola il break di un disco e lo ripete in loop: nasce la breakbeat culture.\n\n> Rubavamo la musica dei nostri padri per farci la nostra. Era già un atto politico.\n\n## La questione legale\n\nCon Grand Upright Music v. Warner Bros. (1991), i tribunali stabiliscono che il campionamento non autorizzato è violazione di copyright. L'industria cambia.",featured:false},
-  {id:3,title:"808: anatomia di un drum machine che ha cambiato tutto",category:"Gear",tags:["808","drum machine","roland"],author:"Staff",date:"2025-02-28",excerpt:"La Roland TR-808 era considerata un fallimento commerciale. Oggi è il suono della musica popolare globale.",body:"## Un fallimento che diventa mito\n\nLa TR-808 viene lanciata nel 1980. Non convince i batteristi: i suoi suoni sono artificiali, nulla a che fare con una vera batteria. Viene discontinuata nel 1983 dopo circa 12.000 unità vendute.\n\n## La seconda vita\n\nI produttori hip-hop la trovano nei negozi di usato a prezzi ridicoli. Il suo kick lungo, subsonico, il suo snare metallico: perfetti per essere miscelati con i sample.\n\n> Non importa che non suoni come una batteria vera. Importa che suoni come se fosse arrabbiata.",featured:false},
-  {id:4,title:"Pentatonica minore: perché suona 'rap' anche su una chitarra",category:"Teoria",tags:["teoria","pentatonica","armonia"],author:"Staff",date:"2025-02-15",excerpt:"La scala che unisce blues, rock e hip-hop. Analisi delle scelte armoniche dei producer contemporanei.",body:"## Struttura della pentatonica minore\n\nCinque note: tonica, terza minore, quarta, quinta, settima minore. Nessuna seconda, nessuna sesta: le note difficili vengono eliminate. Ciò che resta è una mappa di tensione-risoluzione quasi universale.\n\n## Dal blues all'hip-hop\n\nLa pentatonica minore è il DNA del blues afroamericano. Dall'hip-hop viene assorbita non come citazione, ma come eredità inconscia.",featured:false},
-  {id:5,title:"Sidechain: non solo kick & bass",category:"Tecnica",tags:["sidechain","produzione","mixing"],author:"Staff",date:"2025-01-30",excerpt:"Il sidechain pumping è diventato un elemento compositivo nella musica moderna. Una guida tecnica e creativa.",body:"## Cos'è il sidechain compression\n\nIl sidechain è una tecnica per cui un compressore è triggerato da un segnale esterno. Il caso classico: il kick trigghera la compressione del bass, creando spazio per il transiente del tamburo.\n\n## Usi creativi\n\nNei beat contemporanei viene usato su pad, synth, voci per creare un effetto di breathing ritmico che dialoga con il groove.",featured:false}
-];
+const firebaseConfig = {
+  apiKey: "AIzaSyDoNdPNHpjSmzMvyGFmsYAAOpWhVdJTpS0",
+  authDomain: "derealam-2336d.firebaseapp.com",
+  projectId: "derealam-2336d",
+  storageBucket: "derealam-2336d.firebasestorage.app",
+  messagingSenderId: "511242992885",
+  appId: "1:511242992885:web:7a1faead8f79be1209d9bc"
+};
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const ADMIN_PASSWORD = 'derealam2025';
 let articles = [];
 let adminLoggedIn = false;
 let editingId = null;
 
-function loadArticles(){
-  try{
-    const s = localStorage.getItem('derealam_v2');
-    articles = s ? JSON.parse(s) : [...DEFAULT_ARTICLES];
-  } catch(e){ articles = [...DEFAULT_ARTICLES]; }
+// ---- FIRESTORE ----
+async function loadArticles() {
+  try {
+    const q = query(collection(db, 'articles'), orderBy('date', 'desc'));
+    const snap = await getDocs(q);
+    articles = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+    // Se Firestore è vuoto carica articoli di default
+    if (articles.length === 0) {
+      await seedDefaultArticles();
+      const snap2 = await getDocs(q);
+      articles = snap2.docs.map(d => ({ id: d.id, ...d.data() }));
+    }
+  } catch(e) {
+    console.error('Firestore error:', e);
+    showToast('Errore connessione database.');
+  }
+  renderHome();
 }
 
-function saveArticles(){
-  try{ localStorage.setItem('derealam_v2', JSON.stringify(articles)); } catch(e){}
+async function seedDefaultArticles() {
+  const defaults = [
+    {title:"La compressione nell'hip-hop moderno",category:"Tecnica",tags:["compressione","hip-hop","mixing"],author:"Staff",date:"2025-03-28",excerpt:"Tutto suona schiacciato. Non è un bug, è una feature. Analizziamo perché la limitazione dinamica è diventata estetica dominante.",body:"## Il suono schiacciato come scelta estetica\n\nNell'hip-hop contemporaneo, la compressione aggressiva non è un errore tecnico: è un linguaggio.\n\n> Il limitatore non è uno strumento di mastering. È uno strumento compositivo.\n\n## Come funziona tecnicamente\n\nUn compressore riduce la differenza tra le parti più forti e quelle più deboli del segnale audio. Parametri chiave: ratio, threshold, attack, release.",featured:true},
+    {title:"Il campionamento è furto? Una storia del sample",category:"Cultura",tags:["sampling","copyright","storia"],author:"Staff",date:"2025-03-12",excerpt:"Un viaggio nell'etica e nella legge del campionamento, dalla cultura DJ degli anni '70 alle battaglie legali degli anni '90.",body:"## Origini del sampling\n\nIl campionamento nasce nelle feste di block party del Bronx negli anni '70. DJ Kool Herc isola il break di un disco e lo ripete in loop.\n\n> Rubavamo la musica dei nostri padri per farci la nostra. Era già un atto politico.",featured:false},
+    {title:"808: anatomia di un drum machine che ha cambiato tutto",category:"Gear",tags:["808","drum machine","roland"],author:"Staff",date:"2025-02-28",excerpt:"La Roland TR-808 era considerata un fallimento commerciale. Oggi è il suono della musica popolare globale.",body:"## Un fallimento che diventa mito\n\nLa TR-808 viene lanciata nel 1980. Viene discontinuata nel 1983 dopo circa 12.000 unità vendute.\n\n> Non importa che non suoni come una batteria vera. Importa che suoni come se fosse arrabbiata.",featured:false},
+    {title:"Pentatonica minore: perché suona 'rap' anche su una chitarra",category:"Teoria",tags:["teoria","pentatonica","armonia"],author:"Staff",date:"2025-02-15",excerpt:"La scala che unisce blues, rock e hip-hop.",body:"## Struttura della pentatonica minore\n\nCinque note: tonica, terza minore, quarta, quinta, settima minore. Ciò che resta è una mappa di tensione-risoluzione quasi universale.",featured:false},
+    {title:"Sidechain: non solo kick & bass",category:"Tecnica",tags:["sidechain","produzione","mixing"],author:"Staff",date:"2025-01-30",excerpt:"Il sidechain pumping è diventato un elemento compositivo nella musica moderna.",body:"## Cos'è il sidechain compression\n\nIl sidechain è una tecnica per cui un compressore è triggerato da un segnale esterno.\n\n## Usi creativi\n\nNei beat contemporanei viene usato su pad, synth, voci per creare un effetto di breathing ritmico.",featured:false}
+  ];
+  for (const a of defaults) {
+    await addDoc(collection(db, 'articles'), a);
+  }
 }
 
-function showView(name){
+async function fsAddArticle(data) {
+  const ref = await addDoc(collection(db, 'articles'), data);
+  return ref.id;
+}
+
+async function fsUpdateArticle(id, data) {
+  await updateDoc(doc(db, 'articles', id), data);
+}
+
+async function fsDeleteArticle(id) {
+  await deleteDoc(doc(db, 'articles', id));
+}
+
+// ---- UI ----
+function showView(name) {
   if(name === 'admin' && !adminLoggedIn){ showView('adminlogin'); return; }
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
@@ -333,11 +468,13 @@ function showView(name){
   if(name==='admin') renderAdmin();
   window.scrollTo(0,0);
 }
+window.showView = showView;
 
 function handleAdminClick(){
   if(adminLoggedIn) showView('admin');
   else showView('adminlogin');
 }
+window.handleAdminClick = handleAdminClick;
 
 function doLogin(){
   const pw = document.getElementById('login-pw').value;
@@ -351,6 +488,7 @@ function doLogin(){
     document.getElementById('login-error').style.display='block';
   }
 }
+window.doLogin = doLogin;
 
 function doLogout(){
   adminLoggedIn = false;
@@ -358,6 +496,7 @@ function doLogout(){
   showView('home');
   showToast('Uscito dal pannello admin.');
 }
+window.doLogout = doLogout;
 
 function renderHome(){
   const featured = articles.find(a=>a.featured) || articles[0];
@@ -366,32 +505,32 @@ function renderHome(){
     document.getElementById('hero-excerpt').textContent = featured.excerpt;
   }
   const sides = articles.filter(a=>!a.featured).slice(0,3);
-  document.getElementById('side-articles').innerHTML = sides.map((a,i)=>`
-    <div class="side-article" onclick="openArticle(${a.id})">
+  document.getElementById('side-articles').innerHTML = sides.length ? sides.map((a,i)=>`
+    <div class="side-article" onclick="openArticle('${a.id}')">
       <div class="side-num">${String(i+2).padStart(2,'0')}</div>
       <div class="side-title">${a.title}</div>
       <div class="side-meta">${a.category} · ${formatDate(a.date)}</div>
-    </div>`).join('');
+    </div>`).join('') : '';
   const nonFeatured = articles.filter(a=>!a.featured);
   document.getElementById('grid-count').textContent = nonFeatured.length + ' articoli';
-  document.getElementById('article-grid').innerHTML = nonFeatured.map(a=>`
-    <div class="card" onclick="openArticle(${a.id})">
+  document.getElementById('article-grid').innerHTML = nonFeatured.length ? nonFeatured.map(a=>`
+    <div class="card" onclick="openArticle('${a.id}')">
       <div class="card-tags"><span class="tag accent">${a.category}</span>${(a.tags||[]).slice(0,1).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
       <div class="card-title">${a.title}</div>
       <div class="card-excerpt">${a.excerpt}</div>
       <div class="card-footer"><span class="card-date">${formatDate(a.date)}</span><span class="card-arrow">→</span></div>
-    </div>`).join('');
+    </div>`).join('') : '<div style="padding:2rem;color:var(--muted);font-size:12px;grid-column:1/-1">Nessun articolo pubblicato.</div>';
 }
 
 function renderArchive(){
   document.getElementById('archive-count').textContent = articles.length + ' articoli';
-  document.getElementById('archive-list').innerHTML = articles.map((a,i)=>`
-    <div class="archive-row" onclick="openArticle(${a.id})">
+  document.getElementById('archive-list').innerHTML = articles.length ? articles.map((a,i)=>`
+    <div class="archive-row" onclick="openArticle('${a.id}')">
       <span class="archive-num">${String(i+1).padStart(2,'0')}</span>
       <span class="archive-title">${a.title}</span>
       <div class="archive-tags"><span class="tag accent">${a.category}</span></div>
       <span class="archive-date">${formatDate(a.date)}</span>
-    </div>`).join('');
+    </div>`).join('') : '<div style="padding:2rem;color:var(--muted);font-size:12px">Nessun articolo.</div>';
 }
 
 function renderAdmin(){
@@ -399,7 +538,7 @@ function renderAdmin(){
   const cats = new Set(articles.map(a=>a.category));
   document.getElementById('stat-cats').textContent = cats.size;
   const f = articles.find(a=>a.featured);
-  document.getElementById('stat-featured').textContent = f ? f.title.slice(0,20)+'…' : '—';
+  document.getElementById('stat-featured').textContent = f ? f.title.slice(0,16)+'…' : '—';
   document.getElementById('admin-tbody').innerHTML = articles.map((a,i)=>`
     <tr>
       <td style="color:var(--muted);font-size:11px">${String(i+1).padStart(2,'0')}</td>
@@ -407,9 +546,9 @@ function renderAdmin(){
       <td><span class="tag accent">${a.category}</span></td>
       <td style="color:var(--muted);font-size:11px">${formatDate(a.date)}</td>
       <td>
-        <button class="action-btn ${a.featured?'featured-on':''}" onclick="toggleFeatured(${a.id})">${a.featured?'★ Evidenza':'☆ Evidenza'}</button>
-        <button class="action-btn" onclick="openEdit(${a.id})">Modifica</button>
-        <button class="action-btn danger" onclick="deleteArticle(${a.id})">Elimina</button>
+        <button class="action-btn ${a.featured?'featured-on':''}" onclick="toggleFeatured('${a.id}')">${a.featured?'★ Evidenza':'☆ Evidenza'}</button>
+        <button class="action-btn" onclick="openEdit('${a.id}')">Modifica</button>
+        <button class="action-btn danger" onclick="deleteArticle('${a.id}')">Elimina</button>
       </td>
     </tr>`).join('');
 }
@@ -424,35 +563,46 @@ function openArticle(id){
   document.getElementById('art-body').innerHTML = renderBody(a.body);
   showView('article');
 }
+window.openArticle = openArticle;
 
 function openFeatured(){
   const f = articles.find(a=>a.featured)||articles[0];
   if(f) openArticle(f.id);
 }
+window.openFeatured = openFeatured;
 
-function publishArticle(){
+async function publishArticle(){
   const title = document.getElementById('inp-title').value.trim();
   const body = document.getElementById('inp-body').value.trim();
   if(!title||!body){showToast('Titolo e testo obbligatori.');return;}
+  const btn = document.getElementById('publish-btn');
+  btn.disabled = true; btn.textContent = 'Pubblicazione...';
   const tags = document.getElementById('inp-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
-  const newId = Date.now();
-  articles.unshift({
-    id: newId, title,
+  const data = {
+    title,
     category: document.getElementById('inp-cat').value,
     tags,
     author: document.getElementById('inp-author').value.trim()||'Anonimo',
     date: new Date().toISOString().slice(0,10),
     excerpt: body.split('\n').find(l=>l.trim()&&!l.startsWith('#')&&!l.startsWith('>'))||body.slice(0,120)+'...',
-    body, featured: false
-  });
-  saveArticles();
-  document.getElementById('inp-title').value='';
-  document.getElementById('inp-body').value='';
-  document.getElementById('inp-tags').value='';
-  document.getElementById('inp-author').value='';
-  showToast('Articolo pubblicato!');
-  setTimeout(()=>showView('home'),1200);
+    body,
+    featured: false
+  };
+  try {
+    const newId = await fsAddArticle(data);
+    articles.unshift({ id: newId, ...data });
+    document.getElementById('inp-title').value='';
+    document.getElementById('inp-body').value='';
+    document.getElementById('inp-tags').value='';
+    document.getElementById('inp-author').value='';
+    showToast('Articolo pubblicato!');
+    setTimeout(()=>showView('home'),1200);
+  } catch(e) {
+    showToast('Errore durante la pubblicazione.');
+  }
+  btn.disabled = false; btn.textContent = 'Pubblica →';
 }
+window.publishArticle = publishArticle;
 
 function openEdit(id){
   const a = articles.find(x=>x.id===id);
@@ -465,46 +615,61 @@ function openEdit(id){
   document.getElementById('edit-body').value = a.body;
   document.getElementById('edit-modal').classList.add('open');
 }
+window.openEdit = openEdit;
 
 function closeModal(){
   document.getElementById('edit-modal').classList.remove('open');
   editingId = null;
 }
+window.closeModal = closeModal;
 
-function saveEdit(){
+async function saveEdit(){
   const a = articles.find(x=>x.id===editingId);
   if(!a) return;
   const title = document.getElementById('edit-title').value.trim();
   const body = document.getElementById('edit-body').value.trim();
   if(!title||!body){showToast('Titolo e testo obbligatori.');return;}
-  a.title = title;
-  a.category = document.getElementById('edit-cat').value;
-  a.tags = document.getElementById('edit-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
-  a.author = document.getElementById('edit-author').value.trim();
-  a.body = body;
-  a.excerpt = body.split('\n').find(l=>l.trim()&&!l.startsWith('#')&&!l.startsWith('>'))||body.slice(0,120)+'...';
-  saveArticles();
-  closeModal();
-  renderAdmin();
-  showToast('Articolo aggiornato!');
+  const updated = {
+    title,
+    category: document.getElementById('edit-cat').value,
+    tags: document.getElementById('edit-tags').value.split(',').map(t=>t.trim()).filter(Boolean),
+    author: document.getElementById('edit-author').value.trim(),
+    body,
+    excerpt: body.split('\n').find(l=>l.trim()&&!l.startsWith('#')&&!l.startsWith('>'))||body.slice(0,120)+'...'
+  };
+  try {
+    await fsUpdateArticle(editingId, updated);
+    Object.assign(a, updated);
+    closeModal();
+    renderAdmin();
+    showToast('Articolo aggiornato!');
+  } catch(e) { showToast('Errore salvataggio.'); }
 }
+window.saveEdit = saveEdit;
 
-function deleteArticle(id){
+async function deleteArticle(id){
   if(!confirm('Eliminare questo articolo?')) return;
-  articles = articles.filter(a=>a.id!==id);
-  saveArticles();
-  renderAdmin();
-  showToast('Articolo eliminato.');
+  try {
+    await fsDeleteArticle(id);
+    articles = articles.filter(a=>a.id!==id);
+    renderAdmin();
+    showToast('Articolo eliminato.');
+  } catch(e) { showToast('Errore eliminazione.'); }
 }
+window.deleteArticle = deleteArticle;
 
-function toggleFeatured(id){
-  articles.forEach(a=>a.featured=false);
-  const a = articles.find(x=>x.id===id);
-  if(a) a.featured=true;
-  saveArticles();
-  renderAdmin();
-  showToast('Articolo in evidenza aggiornato!');
+async function toggleFeatured(id){
+  try {
+    for (const a of articles) {
+      if(a.featured) { await fsUpdateArticle(a.id, {featured:false}); a.featured=false; }
+    }
+    const a = articles.find(x=>x.id===id);
+    if(a){ await fsUpdateArticle(id, {featured:true}); a.featured=true; }
+    renderAdmin();
+    showToast('Articolo in evidenza aggiornato!');
+  } catch(e) { showToast('Errore.'); }
 }
+window.toggleFeatured = toggleFeatured;
 
 function renderBody(text){
   return text.split('\n').map(line=>{
@@ -529,8 +694,18 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
+function toggleMobileMenu(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+window.toggleMobileMenu = toggleMobileMenu;
+
+function closeMobileMenu(){
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+window.closeMobileMenu = closeMobileMenu;
+
+// INIT
 loadArticles();
-renderHome();
 </script>
 </body>
 </html>
