@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OFFGRID MUSIC</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@700:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Orbitron:wght@700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,7 +16,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 header{border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:stretch;justify-content:space-between;height:64px;position:relative}
 .logo{font-family:'Orbitron',sans-serif;font-size:1.6rem;letter-spacing:0.08em;color:var(--accent);display:flex;align-items:center;text-decoration:none;cursor:pointer}
-.logo span{color:var(--accent)}
 nav{display:flex;align-items:center;gap:1.5rem}
 nav a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:color 0.15s}
 nav a:hover,nav a.active{color:var(--text)}
@@ -48,9 +47,8 @@ nav a:hover,nav a.active{color:var(--text)}
 .hero{border-bottom:1px solid var(--border);padding:3rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:0}
 .hero-left{padding-right:2rem;border-right:1px solid var(--border)}
 .hero-kicker{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
-.hero-title{font-family:'Orbitron',sans-serif;font-size:3rem;letter-spacing:0.04em;line-height:0.95;color:var(--text);margin-bottom:1.5rem}
+.hero-title{font-family:'Orbitron',sans-serif;font-size:2.4rem;letter-spacing:0.04em;line-height:1.1;color:var(--text);margin-bottom:1.5rem}
 .hero-excerpt{color:var(--muted);font-size:13px;line-height:1.8;margin-bottom:1.5rem;font-family:'DM Serif Display',serif;font-style:italic}
-.hero-img{width:100%;max-height:220px;object-fit:cover;margin-bottom:1.5rem;display:block}
 .read-more{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);cursor:pointer;text-decoration:none;transition:gap 0.2s}
 .read-more:hover{gap:14px}
 .hero-right{padding-left:2rem;display:flex;flex-direction:column;gap:1.5rem}
@@ -82,7 +80,6 @@ nav a:hover,nav a.active{color:var(--text)}
 .card-arrow{font-size:14px;color:var(--border);transition:color 0.15s,transform 0.15s}
 .card:hover .card-arrow{color:var(--accent);transform:translateX(4px)}
 
-/* VIEWS COUNT */
 .views-badge{font-size:10px;color:var(--muted);letter-spacing:0.08em;display:inline-flex;align-items:center;gap:4px}
 .views-badge::before{content:'◎';font-size:9px;color:var(--accent)}
 
@@ -90,7 +87,7 @@ nav a:hover,nav a.active{color:var(--text)}
 .article-back{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;margin-bottom:2rem;transition:color 0.15s;text-decoration:none}
 .article-back:hover{color:var(--accent)}
 .article-kicker{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem}
-.article-title{font-family:'Orbitron',sans-serif;font-size:3rem;letter-spacing:0.04em;line-height:0.95;color:var(--text);margin-bottom:1.25rem}
+.article-title{font-family:'Orbitron',sans-serif;font-size:2rem;letter-spacing:0.04em;line-height:1.15;color:var(--text);margin-bottom:1.25rem}
 .article-meta{font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
 .article-cover{width:100%;max-height:400px;object-fit:cover;margin-bottom:2rem;display:block}
 .article-body{font-family:'DM Serif Display',serif;font-size:17px;line-height:1.9;color:var(--text)}
@@ -100,14 +97,23 @@ nav a:hover,nav a.active{color:var(--text)}
 
 .editor-wrap{max-width:780px;margin:0 auto;padding:3rem 2rem}
 .editor-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
-.editor-title-big{font-family:'Orbitron',sans-serif;font-size:1.8rem;letter-spacing:0.08em;color:var(--text)}
+.editor-title-big{font-family:'Orbitron',sans-serif;font-size:1.4rem;letter-spacing:0.08em;color:var(--text)}
 .field-group{margin-bottom:1.5rem}
 .field-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block}
 .field-input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:'Space Mono',monospace;font-size:13px;padding:10px 14px;outline:none;transition:border-color 0.15s}
 .field-input:focus{border-color:var(--accent)}
 .field-textarea{min-height:280px;resize:vertical;line-height:1.7}
 .field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+
+/* IMAGE UPLOAD */
+.img-upload-area{border:1px dashed var(--border);padding:1.5rem;text-align:center;cursor:pointer;transition:border-color 0.15s;position:relative}
+.img-upload-area:hover{border-color:var(--accent)}
+.img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-upload-label{font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+.img-upload-label span{color:var(--accent)}
 .img-preview{width:100%;max-height:200px;object-fit:cover;margin-top:8px;display:none;border:1px solid var(--border)}
+.img-remove{font-size:10px;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;background:none;border:none;cursor:pointer;font-family:'Space Mono',monospace;margin-top:6px;display:none}
+
 .submit-btn{background:var(--accent);color:#fff;border:none;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:12px 28px;cursor:pointer;transition:background 0.15s,transform 0.1s}
 .submit-btn:hover{background:#fff;color:#000}
 .submit-btn:active{transform:scale(0.97)}
@@ -124,7 +130,7 @@ nav a:hover,nav a.active{color:var(--text)}
 
 .login-wrap{max-width:400px;margin:6rem auto;padding:2rem}
 .login-box{background:var(--surface);border:1px solid var(--border);padding:2.5rem}
-.login-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.1em;margin-bottom:0.5rem}
+.login-title{font-family:'Orbitron',sans-serif;font-size:1.4rem;letter-spacing:0.08em;margin-bottom:0.5rem}
 .login-sub{font-size:11px;color:var(--muted);letter-spacing:0.1em;margin-bottom:2rem;text-transform:uppercase}
 .login-error{font-size:11px;color:var(--accent2);letter-spacing:0.08em;margin-top:8px;display:none}
 
@@ -154,7 +160,7 @@ nav a:hover,nav a.active{color:var(--text)}
 .modal-close:hover{color:#ff3c3c}
 
 footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-content:space-between;align-items:center;margin-top:2rem;flex-wrap:wrap;gap:1rem}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.1em;color:var(--muted)}
+.footer-logo{font-family:'Orbitron',sans-serif;font-size:1rem;letter-spacing:0.1em;color:var(--muted)}
 .footer-copy{font-size:10px;color:var(--muted);letter-spacing:0.1em}
 .dot{width:6px;height:6px;background:var(--accent);display:inline-block;border-radius:50%;margin-right:4px;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
@@ -163,13 +169,13 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 
 @media(max-width:768px){
   header{padding:0 1rem}
-  .logo{font-size:1.8rem}
+  .logo{font-size:1.2rem}
   nav .nav-links{display:none!important}
   nav .nav-btn{display:none!important}
   .hamburger{display:flex}
   .hero{grid-template-columns:1fr;padding:2rem 1rem}
   .hero-left{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:2rem;margin-bottom:2rem}
-  .hero-title{font-size:2.8rem}
+  .hero-title{font-size:1.8rem}
   .hero-right{padding-left:0}
   .grid{grid-template-columns:1fr}
   .card{border-right:none}
@@ -184,12 +190,12 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   .admin-table tr{display:block;border-bottom:1px solid var(--border);padding:0.75rem 0}
   .admin-table td{display:block;border:none;padding:4px 0}
   .admin-td-title{max-width:100%}
-  .article-title{font-size:2.5rem}
+  .article-title{font-size:1.6rem}
   .modal-overlay{padding:1rem 0.5rem}
 }
 @media(max-width:480px){
-  .hero-title{font-size:2.2rem}
-  .article-title{font-size:2rem}
+  .hero-title{font-size:1.5rem}
+  .article-title{font-size:1.4rem}
   .admin-stats{grid-template-columns:1fr 1fr}
 }
 </style>
@@ -218,6 +224,22 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   <a onclick="showView('about');closeMobileMenu()">About</a>
   <button class="mob-write" id="scrivi-mob-btn" onclick="showView('editor');closeMobileMenu()" style="display:none">+ Scrivi articolo</button>
   <button onclick="handleAdminClick();closeMobileMenu()">⚙ Admin</button>
+</div>
+
+<div class="ticker">
+  <div class="ticker-label">LIVE</div>
+  <div class="ticker-track">
+    <span>→ <b>ULTIMO</b> La compressione nell'hip-hop: perché tutto suona schiacciato</span>
+    <span>→ <b>TECNICA</b> Sidechain, non solo kick &amp; bass</span>
+    <span>→ <b>GEAR</b> SP-404 MK2: lo strumento della strada</span>
+    <span>→ <b>TEORIA</b> Pentatonica minore nel rap moderno</span>
+    <span>→ <b>PRODUZIONE</b> Come costruire un loop da zero su 808</span>
+    <span>→ <b>ULTIMO</b> La compressione nell'hip-hop: perché tutto suona schiacciato</span>
+    <span>→ <b>TECNICA</b> Sidechain, non solo kick &amp; bass</span>
+    <span>→ <b>GEAR</b> SP-404 MK2: lo strumento della strada</span>
+    <span>→ <b>TEORIA</b> Pentatonica minore nel rap moderno</span>
+    <span>→ <b>PRODUZIONE</b> Come costruire un loop da zero su 808</span>
+  </div>
 </div>
 
 <!-- HOME -->
@@ -270,9 +292,13 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <div class="field-group"><label class="field-label">Autore</label><input class="field-input" id="inp-author" placeholder="Nome / alias..." type="text"></div>
     </div>
     <div class="field-group">
-      <label class="field-label">Immagine di copertina (URL)</label>
-      <input class="field-input" id="inp-img" placeholder="https://esempio.com/immagine.jpg" type="url" oninput="previewImg('inp-img','inp-img-preview')">
+      <label class="field-label">Immagine di copertina</label>
+      <div class="img-upload-area" id="inp-upload-area">
+        <input type="file" accept="image/*" id="inp-img-file" onchange="handleImageUpload('inp-img-file','inp-img-preview','inp-img-remove','inp-upload-label')">
+        <div class="img-upload-label" id="inp-upload-label">Clicca o trascina un'immagine · <span>Max 1MB</span></div>
+      </div>
       <img id="inp-img-preview" class="img-preview" alt="Anteprima">
+      <button class="img-remove" id="inp-img-remove" onclick="removeImage('inp-img-file','inp-img-preview','inp-img-remove','inp-upload-label')">✕ Rimuovi immagine</button>
     </div>
     <div class="field-group"><label class="field-label">Testo * (## per titoli, > per citazioni)</label><textarea class="field-input field-textarea" id="inp-body" placeholder="Scrivi qui..."></textarea></div>
     <button class="submit-btn" id="publish-btn" onclick="publishArticle()">Pubblica →</button>
@@ -318,11 +344,15 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       </div>
       <div class="login-sub">Accesso riservato</div>
       <div class="field-group">
+        <label class="field-label">Email</label>
+        <input class="field-input" id="login-email" type="email" placeholder="admin@offgridmusic.com">
+      </div>
+      <div class="field-group">
         <label class="field-label">Password</label>
         <input class="field-input" id="login-pw" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
-        <div class="login-error" id="login-error">Password errata.</div>
+        <div class="login-error" id="login-error">Email o password errati.</div>
       </div>
-      <button class="submit-btn" onclick="doLogin()">Entra →</button>
+      <button class="submit-btn" id="login-btn" onclick="doLogin()">Entra →</button>
     </div>
   </div>
 </div>
@@ -332,7 +362,10 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   <div class="admin-wrap">
     <div class="admin-header">
       <span class="admin-title">Pannello Admin</span>
-      <button class="action-btn danger" onclick="doLogout()">Esci</button>
+      <div style="display:flex;align-items:center;gap:1rem">
+        <span id="admin-user-email" style="font-size:11px;color:var(--muted);letter-spacing:0.08em"></span>
+        <button class="action-btn danger" onclick="doLogout()">Esci</button>
+      </div>
     </div>
     <div class="admin-stats">
       <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Articoli totali</div></div>
@@ -367,9 +400,13 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <div class="field-group"><label class="field-label">Autore</label><input class="field-input" id="edit-author" type="text"></div>
     </div>
     <div class="field-group">
-      <label class="field-label">Immagine di copertina (URL)</label>
-      <input class="field-input" id="edit-img" type="url" placeholder="https://esempio.com/immagine.jpg" oninput="previewImg('edit-img','edit-img-preview')">
+      <label class="field-label">Immagine di copertina</label>
+      <div class="img-upload-area" id="edit-upload-area">
+        <input type="file" accept="image/*" id="edit-img-file" onchange="handleImageUpload('edit-img-file','edit-img-preview','edit-img-remove','edit-upload-label')">
+        <div class="img-upload-label" id="edit-upload-label">Clicca o trascina un'immagine · <span>Max 1MB</span></div>
+      </div>
       <img id="edit-img-preview" class="img-preview" alt="Anteprima">
+      <button class="img-remove" id="edit-img-remove" onclick="removeImage('edit-img-file','edit-img-preview','edit-img-remove','edit-upload-label')">✕ Rimuovi immagine</button>
     </div>
     <div class="field-group"><label class="field-label">Testo *</label><textarea class="field-input field-textarea" id="edit-body"></textarea></div>
     <button class="submit-btn" onclick="saveEdit()">Salva modifiche →</button>
@@ -381,6 +418,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, increment } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDoNdPNHpjSmzMvyGFmsYAAOpWhVdJTpS0",
@@ -393,12 +431,56 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-const ADMIN_PASSWORD = 'derealam2025';
 let articles = [];
 let adminLoggedIn = false;
 let editingId = null;
+let currentImageBase64 = null;
+let editImageBase64 = null;
 
+// ---- AUTH ----
+onAuthStateChanged(auth, user => {
+  if (user) {
+    adminLoggedIn = true;
+    document.getElementById('scrivi-btn').style.display = '';
+    document.getElementById('scrivi-mob-btn').style.display = '';
+    document.getElementById('admin-nav-btn').style.color = 'var(--accent)';
+    document.getElementById('admin-user-email').textContent = user.email;
+  } else {
+    adminLoggedIn = false;
+    document.getElementById('scrivi-btn').style.display = 'none';
+    document.getElementById('scrivi-mob-btn').style.display = 'none';
+    document.getElementById('admin-nav-btn').style.color = '';
+    document.getElementById('admin-user-email').textContent = '';
+  }
+});
+
+async function doLogin(){
+  const email = document.getElementById('login-email').value.trim();
+  const pw = document.getElementById('login-pw').value;
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true; btn.textContent = 'Accesso...';
+  try {
+    await signInWithEmailAndPassword(auth, email, pw);
+    document.getElementById('login-pw').value = '';
+    document.getElementById('login-error').style.display = 'none';
+    showView('admin');
+  } catch(e) {
+    document.getElementById('login-error').style.display = 'block';
+  }
+  btn.disabled = false; btn.textContent = 'Entra →';
+}
+window.doLogin = doLogin;
+
+async function doLogout(){
+  await signOut(auth);
+  showView('home');
+  showToast('Uscito dal pannello admin.');
+}
+window.doLogout = doLogout;
+
+// ---- FIRESTORE ----
 async function loadArticles() {
   try {
     const q = query(collection(db, 'articles'), orderBy('date', 'desc'));
@@ -418,11 +500,11 @@ async function loadArticles() {
 
 async function seedDefaultArticles() {
   const defaults = [
-    {title:"La compressione nell'hip-hop moderno",category:"Tecnica",tags:["compressione","hip-hop","mixing"],author:"Staff",date:"2025-03-28",imageUrl:"",excerpt:"Tutto suona schiacciato. Non è un bug, è una feature. Analizziamo perché la limitazione dinamica è diventata estetica dominante.",body:"## Il suono schiacciato come scelta estetica\n\nNell'hip-hop contemporaneo, la compressione aggressiva non è un errore tecnico: è un linguaggio.\n\n> Il limitatore non è uno strumento di mastering. È uno strumento compositivo.\n\n## Come funziona tecnicamente\n\nUn compressore riduce la differenza tra le parti più forti e quelle più deboli del segnale audio.",featured:true,views:0},
-    {title:"Il campionamento è furto? Una storia del sample",category:"Cultura",tags:["sampling","copyright","storia"],author:"Staff",date:"2025-03-12",imageUrl:"",excerpt:"Un viaggio nell'etica e nella legge del campionamento, dalla cultura DJ degli anni '70 alle battaglie legali degli anni '90.",body:"## Origini del sampling\n\nIl campionamento nasce nelle feste di block party del Bronx negli anni '70.\n\n> Rubavamo la musica dei nostri padri per farci la nostra. Era già un atto politico.",featured:false,views:0},
-    {title:"808: anatomia di un drum machine che ha cambiato tutto",category:"Gear",tags:["808","drum machine","roland"],author:"Staff",date:"2025-02-28",imageUrl:"",excerpt:"La Roland TR-808 era considerata un fallimento commerciale. Oggi è il suono della musica popolare globale.",body:"## Un fallimento che diventa mito\n\nLa TR-808 viene lanciata nel 1980. Viene discontinuata nel 1983 dopo circa 12.000 unità vendute.\n\n> Non importa che non suoni come una batteria vera. Importa che suoni come se fosse arrabbiata.",featured:false,views:0},
+    {title:"La compressione nell'hip-hop moderno",category:"Tecnica",tags:["compressione","hip-hop","mixing"],author:"Staff",date:"2025-03-28",imageUrl:"",excerpt:"Tutto suona schiacciato. Non è un bug, è una feature.",body:"## Il suono schiacciato come scelta estetica\n\nNell'hip-hop contemporaneo, la compressione aggressiva non è un errore tecnico: è un linguaggio.\n\n> Il limitatore non è uno strumento di mastering. È uno strumento compositivo.",featured:true,views:0},
+    {title:"Il campionamento è furto? Una storia del sample",category:"Cultura",tags:["sampling","copyright","storia"],author:"Staff",date:"2025-03-12",imageUrl:"",excerpt:"Un viaggio nell'etica e nella legge del campionamento.",body:"## Origini del sampling\n\nIl campionamento nasce nelle feste di block party del Bronx negli anni '70.\n\n> Rubavamo la musica dei nostri padri per farci la nostra.",featured:false,views:0},
+    {title:"808: anatomia di un drum machine che ha cambiato tutto",category:"Gear",tags:["808","drum machine","roland"],author:"Staff",date:"2025-02-28",imageUrl:"",excerpt:"La Roland TR-808 era considerata un fallimento commerciale.",body:"## Un fallimento che diventa mito\n\nLa TR-808 viene lanciata nel 1980.\n\n> Non importa che non suoni come una batteria vera.",featured:false,views:0},
     {title:"Pentatonica minore: perché suona 'rap' anche su una chitarra",category:"Teoria",tags:["teoria","pentatonica","armonia"],author:"Staff",date:"2025-02-15",imageUrl:"",excerpt:"La scala che unisce blues, rock e hip-hop.",body:"## Struttura della pentatonica minore\n\nCinque note: tonica, terza minore, quarta, quinta, settima minore.",featured:false,views:0},
-    {title:"Sidechain: non solo kick & bass",category:"Tecnica",tags:["sidechain","produzione","mixing"],author:"Staff",date:"2025-01-30",imageUrl:"",excerpt:"Il sidechain pumping è diventato un elemento compositivo nella musica moderna.",body:"## Cos'è il sidechain compression\n\nIl sidechain è una tecnica per cui un compressore è triggerato da un segnale esterno.",featured:false,views:0}
+    {title:"Sidechain: non solo kick & bass",category:"Tecnica",tags:["sidechain","produzione","mixing"],author:"Staff",date:"2025-01-30",imageUrl:"",excerpt:"Il sidechain pumping è diventato un elemento compositivo.",body:"## Cos'è il sidechain compression\n\nIl sidechain è una tecnica per cui un compressore è triggerato da un segnale esterno.",featured:false,views:0}
   ];
   for (const a of defaults) await addDoc(collection(db, 'articles'), a);
 }
@@ -432,6 +514,53 @@ async function fsUpdateArticle(id, data) { await updateDoc(doc(db, 'articles', i
 async function fsDeleteArticle(id) { await deleteDoc(doc(db, 'articles', id)); }
 async function fsIncrementViews(id) { await updateDoc(doc(db, 'articles', id), { views: increment(1) }); }
 
+// ---- IMAGE HANDLING ----
+function resizeImage(file, maxWidth, maxHeight, quality) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        if (w > maxWidth) { h = h * maxWidth / w; w = maxWidth; }
+        if (h > maxHeight) { w = w * maxHeight / h; h = maxHeight; }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function handleImageUpload(inputId, previewId, removeId, labelId) {
+  const file = document.getElementById(inputId).files[0];
+  if (!file) return;
+  if (file.size > 3 * 1024 * 1024) { showToast('Immagine troppo grande. Max 3MB.'); return; }
+  resizeImage(file, 1200, 800, 0.82).then(base64 => {
+    if (inputId === 'inp-img-file') currentImageBase64 = base64;
+    else editImageBase64 = base64;
+    const preview = document.getElementById(previewId);
+    preview.src = base64; preview.style.display = 'block';
+    document.getElementById(removeId).style.display = 'block';
+    document.getElementById(labelId).textContent = '✓ ' + file.name;
+  });
+}
+window.handleImageUpload = handleImageUpload;
+
+function removeImage(inputId, previewId, removeId, labelId) {
+  if (inputId === 'inp-img-file') currentImageBase64 = null;
+  else editImageBase64 = null;
+  document.getElementById(inputId).value = '';
+  document.getElementById(previewId).style.display = 'none';
+  document.getElementById(removeId).style.display = 'none';
+  document.getElementById(labelId).innerHTML = 'Clicca o trascina un\'immagine · <span>Max 1MB</span>';
+}
+window.removeImage = removeImage;
+
+// ---- UI ----
 function showView(name) {
   if(name === 'admin' && !adminLoggedIn){ showView('adminlogin'); return; }
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
@@ -448,30 +577,6 @@ window.showView = showView;
 
 function handleAdminClick(){ adminLoggedIn ? showView('admin') : showView('adminlogin'); }
 window.handleAdminClick = handleAdminClick;
-
-function doLogin(){
-  const pw = document.getElementById('login-pw').value;
-  if(pw === ADMIN_PASSWORD){
-    adminLoggedIn = true;
-    document.getElementById('scrivi-btn').style.display='';
-    document.getElementById('scrivi-mob-btn').style.display='';
-    document.getElementById('login-pw').value='';
-    document.getElementById('login-error').style.display='none';
-    document.getElementById('admin-nav-btn').style.color='var(--accent)';
-    showView('admin');
-  } else { document.getElementById('login-error').style.display='block'; }
-}
-window.doLogin = doLogin;
-
-function doLogout(){
-  adminLoggedIn = false;
-  document.getElementById('admin-nav-btn').style.color='';
-  document.getElementById('scrivi-btn').style.display='none';
-  document.getElementById('scrivi-mob-btn').style.display='none';
-  showView('home');
-  showToast('Uscito dal pannello admin.');
-}
-window.doLogout = doLogout;
 
 function renderHome(){
   const featured = articles.find(a=>a.featured) || articles[0];
@@ -512,8 +617,7 @@ function renderArchive(){
 function renderAdmin(){
   document.getElementById('stat-total').textContent = articles.length;
   document.getElementById('stat-cats').textContent = new Set(articles.map(a=>a.category)).size;
-  const totalViews = articles.reduce((s,a)=>s+(a.views||0),0);
-  document.getElementById('stat-views').textContent = totalViews;
+  document.getElementById('stat-views').textContent = articles.reduce((s,a)=>s+(a.views||0),0);
   const f = articles.find(a=>a.featured);
   document.getElementById('stat-featured').textContent = f ? f.title.slice(0,14)+'…' : '—';
   document.getElementById('admin-tbody').innerHTML = articles.map((a,i)=>`
@@ -541,7 +645,6 @@ async function openArticle(id){
   const cover = document.getElementById('art-cover');
   if(a.imageUrl){ cover.src=a.imageUrl; cover.style.display='block'; } else { cover.style.display='none'; }
   document.getElementById('art-body').innerHTML = renderBody(a.body);
-  // increment views
   a.views = (a.views||0) + 1;
   document.getElementById('art-views').textContent = a.views + ' letture';
   fsIncrementViews(id).catch(()=>{});
@@ -563,18 +666,18 @@ async function publishArticle(){
     title, category: document.getElementById('inp-cat').value, tags,
     author: document.getElementById('inp-author').value.trim()||'Anonimo',
     date: new Date().toISOString().slice(0,10),
-    imageUrl: document.getElementById('inp-img').value.trim(),
+    imageUrl: currentImageBase64 || '',
     excerpt: body.split('\n').find(l=>l.trim()&&!l.startsWith('#')&&!l.startsWith('>'))||body.slice(0,120)+'...',
     body, featured:false, views:0
   };
   try {
     const newId = await fsAddArticle(data);
     articles.unshift({id:newId,...data});
-    ['inp-title','inp-body','inp-tags','inp-author','inp-img'].forEach(id=>document.getElementById(id).value='');
-    document.getElementById('inp-img-preview').style.display='none';
+    ['inp-title','inp-body','inp-tags','inp-author'].forEach(id=>document.getElementById(id).value='');
+    removeImage('inp-img-file','inp-img-preview','inp-img-remove','inp-upload-label');
     showToast('Articolo pubblicato!');
     setTimeout(()=>showView('home'),1200);
-  } catch(e){ showToast('Errore durante la pubblicazione.'); }
+  } catch(e){ showToast('Errore durante la pubblicazione: '+e.message); }
   btn.disabled=false; btn.textContent='Pubblica →';
 }
 window.publishArticle = publishArticle;
@@ -583,19 +686,21 @@ function openEdit(id){
   const a = articles.find(x=>x.id===id);
   if(!a) return;
   editingId = id;
+  editImageBase64 = a.imageUrl || null;
   document.getElementById('edit-title').value = a.title;
   document.getElementById('edit-cat').value = a.category;
   document.getElementById('edit-tags').value = (a.tags||[]).join(', ');
   document.getElementById('edit-author').value = a.author||'';
-  document.getElementById('edit-img').value = a.imageUrl||'';
   document.getElementById('edit-body').value = a.body;
   const prev = document.getElementById('edit-img-preview');
-  if(a.imageUrl){ prev.src=a.imageUrl; prev.style.display='block'; } else { prev.style.display='none'; }
+  const removeBtn = document.getElementById('edit-img-remove');
+  if(a.imageUrl){ prev.src=a.imageUrl; prev.style.display='block'; removeBtn.style.display='block'; }
+  else { prev.style.display='none'; removeBtn.style.display='none'; }
   document.getElementById('edit-modal').classList.add('open');
 }
 window.openEdit = openEdit;
 
-function closeModal(){ document.getElementById('edit-modal').classList.remove('open'); editingId=null; }
+function closeModal(){ document.getElementById('edit-modal').classList.remove('open'); editingId=null; editImageBase64=null; }
 window.closeModal = closeModal;
 
 async function saveEdit(){
@@ -608,7 +713,7 @@ async function saveEdit(){
     title, category: document.getElementById('edit-cat').value,
     tags: document.getElementById('edit-tags').value.split(',').map(t=>t.trim()).filter(Boolean),
     author: document.getElementById('edit-author').value.trim(),
-    imageUrl: document.getElementById('edit-img').value.trim(),
+    imageUrl: editImageBase64 || '',
     body, excerpt: body.split('\n').find(l=>l.trim()&&!l.startsWith('#')&&!l.startsWith('>'))||body.slice(0,120)+'...'
   };
   try { await fsUpdateArticle(editingId, updated); Object.assign(a, updated); closeModal(); renderAdmin(); showToast('Articolo aggiornato!'); }
@@ -633,14 +738,6 @@ async function toggleFeatured(id){
 }
 window.toggleFeatured = toggleFeatured;
 
-function previewImg(inputId, previewId){
-  const url = document.getElementById(inputId).value.trim();
-  const img = document.getElementById(previewId);
-  if(url){ img.src=url; img.style.display='block'; img.onerror=()=>img.style.display='none'; }
-  else { img.style.display='none'; }
-}
-window.previewImg = previewImg;
-
 function renderBody(text){
   return text.split('\n').map(line=>{
     if(line.startsWith('## ')) return `<h2>${line.slice(3)}</h2>`;
@@ -658,7 +755,7 @@ function formatDate(d){
 
 function showToast(msg){
   const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
+  setTimeout(()=>t.classList.remove('show'),2800);
 }
 
 function toggleMobileMenu(){ document.getElementById('mobile-menu').classList.toggle('open'); }
