@@ -7,10 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Orbitron:wght@700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0a0a0a;--surface:#111111;--surface2:#1a1a1a;--border:#2a2a2a;
-  --accent:#ff3c3c;--accent2:#ff3c3c;--text:#f0ece0;--muted:#7a7870;--tag-bg:#1e1e1e;
-}
+:root{--bg:#0a0a0a;--surface:#111111;--surface2:#1a1a1a;--border:#2a2a2a;--accent:#ff3c3c;--accent2:#ff3c3c;--text:#f0ece0;--muted:#7a7870;--tag-bg:#1e1e1e}
 body{background:var(--bg);color:var(--text);font-family:'Space Mono',monospace;font-size:14px;line-height:1.6;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.4}
 
@@ -23,7 +20,6 @@ nav a:hover,nav a.active{color:var(--text)}
 .nav-btn:hover{background:#fff;color:#000!important}
 .nav-btn.admin-btn{background:var(--surface2);color:var(--muted)!important;border:1px solid var(--border)}
 .nav-btn.admin-btn:hover{background:var(--border);color:var(--text)!important}
-
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
 .hamburger span{width:22px;height:2px;background:var(--text);display:block;transition:all 0.2s}
 .mobile-menu{display:none;position:absolute;top:64px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);z-index:50;flex-direction:column;padding:1rem 2rem;gap:1rem}
@@ -32,22 +28,16 @@ nav a:hover,nav a.active{color:var(--text)}
 .mobile-menu a:hover,.mobile-menu button:hover{color:var(--accent)}
 .mobile-menu .mob-write{color:var(--accent)!important;font-weight:700}
 
-.ticker{border-bottom:1px solid var(--border);background:var(--surface);overflow:hidden;height:32px;display:flex;align-items:center}
-.ticker-label{background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.15em;padding:0 12px;height:100%;display:flex;align-items:center;white-space:nowrap;flex-shrink:0}
-.ticker-track{display:flex;animation:scroll-left 30s linear infinite;white-space:nowrap}
-.ticker-track span{font-size:11px;color:var(--muted);letter-spacing:0.08em;padding:0 2rem}
-.ticker-track span b{color:var(--text)}
-@keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
 .view{display:none}.view.active{display:block}
-
 .loading{text-align:center;padding:4rem 2rem;color:var(--muted);font-size:12px;letter-spacing:0.15em;text-transform:uppercase}
 .loading::after{content:'';display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-left:8px;animation:pulse 1s ease-in-out infinite}
 
+/* HERO */
 .hero{border-bottom:1px solid var(--border);padding:3rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:0}
 .hero-left{padding-right:2rem;border-right:1px solid var(--border)}
 .hero-kicker{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
-.hero-title{font-family:'Orbitron',sans-serif;font-size:2.4rem;letter-spacing:0.04em;line-height:1.1;color:var(--text);margin-bottom:1.5rem}
+.hero-cover{width:100%;height:200px;object-fit:cover;margin-bottom:1rem;display:none}
+.hero-title{font-family:'Orbitron',sans-serif;font-size:2.4rem;letter-spacing:0.04em;line-height:1.1;color:var(--text);margin-bottom:1rem}
 .hero-excerpt{color:var(--muted);font-size:13px;line-height:1.8;margin-bottom:1.5rem;font-family:'DM Serif Display',serif;font-style:italic}
 .read-more{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);cursor:pointer;text-decoration:none;transition:gap 0.2s}
 .read-more:hover{gap:14px}
@@ -104,8 +94,6 @@ nav a:hover,nav a.active{color:var(--text)}
 .field-input:focus{border-color:var(--accent)}
 .field-textarea{min-height:280px;resize:vertical;line-height:1.7}
 .field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
-
-/* IMAGE UPLOAD */
 .img-upload-area{border:1px dashed var(--border);padding:1.5rem;text-align:center;cursor:pointer;transition:border-color 0.15s;position:relative}
 .img-upload-area:hover{border-color:var(--accent)}
 .img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
@@ -113,7 +101,6 @@ nav a:hover,nav a.active{color:var(--text)}
 .img-upload-label span{color:var(--accent)}
 .img-preview{width:100%;max-height:200px;object-fit:cover;margin-top:8px;display:none;border:1px solid var(--border)}
 .img-remove{font-size:10px;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;background:none;border:none;cursor:pointer;font-family:'Space Mono',monospace;margin-top:6px;display:none}
-
 .submit-btn{background:var(--accent);color:#fff;border:none;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:12px 28px;cursor:pointer;transition:background 0.15s,transform 0.1s}
 .submit-btn:hover{background:#fff;color:#000}
 .submit-btn:active{transform:scale(0.97)}
@@ -141,7 +128,7 @@ nav a:hover,nav a.active{color:var(--text)}
 .admin-table th{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--border);text-align:left}
 .admin-table td{padding:12px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle}
 .admin-table tr:hover td{background:var(--surface)}
-.admin-td-title{font-weight:700;color:var(--text);max-width:240px}
+.admin-td-title{font-weight:700;color:var(--text);max-width:200px}
 .action-btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s;margin-right:4px;margin-bottom:4px}
 .action-btn:hover{border-color:var(--accent);color:var(--accent)}
 .action-btn.danger:hover{border-color:#ff3c3c;color:#ff3c3c}
@@ -150,6 +137,13 @@ nav a:hover,nav a.active{color:var(--text)}
 .stat-card{background:var(--surface);border:1px solid var(--border);padding:1.25rem}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent);line-height:1}
 .stat-label{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px}
+
+/* FEATURED POSITION SELECTOR */
+.pos-select{display:flex;gap:6px;flex-wrap:wrap}
+.pos-btn{font-family:'Space Mono',monospace;font-size:10px;padding:3px 8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s}
+.pos-btn:hover{border-color:var(--accent);color:var(--accent)}
+.pos-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pos-btn.disabled-pos{opacity:0.3;cursor:not-allowed}
 
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto}
 .modal-overlay.open{display:flex}
@@ -178,8 +172,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   .hero-title{font-size:1.8rem}
   .hero-right{padding-left:0}
   .grid{grid-template-columns:1fr}
-  .card{border-right:none}
-  .card:nth-child(3n){border-right:none}
+  .card{border-right:none}.card:nth-child(3n){border-right:none}
   .section-header{padding:1rem}
   .archive-wrap{padding:1rem}
   .field-row{grid-template-columns:1fr}
@@ -212,9 +205,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <button class="nav-btn" id="scrivi-btn" onclick="showView('editor')" style="display:none">+ Scrivi</button>
       <button class="nav-btn admin-btn" id="admin-nav-btn" onclick="handleAdminClick()">⚙ Admin</button>
     </span>
-    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 </header>
 
@@ -226,12 +217,12 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   <button onclick="handleAdminClick();closeMobileMenu()">⚙ Admin</button>
 </div>
 
-
 <!-- HOME -->
 <div id="view-home" class="view active">
   <div class="hero">
     <div class="hero-left">
-      <div class="hero-kicker"><span class="dot"></span> Articolo in evidenza</div>
+      <div class="hero-kicker"><span class="dot"></span> In evidenza</div>
+      <img id="hero-cover" class="hero-cover" src="" alt="">
       <h1 class="hero-title" id="hero-title">OFFGRID MUSIC</h1>
       <p class="hero-excerpt" id="hero-excerpt">Caricamento in corso...</p>
       <a class="read-more" onclick="openFeatured()">Leggi l'articolo <span>→</span></a>
@@ -254,8 +245,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
     <div class="article-kicker" id="art-kicker"></div>
     <h1 class="article-title" id="art-title"></h1>
     <div class="article-meta">
-      <span id="art-date"></span>
-      <span id="art-tags"></span>
+      <span id="art-date"></span><span id="art-tags"></span>
       <span class="views-badge" id="art-views"></span>
     </div>
     <img id="art-cover" class="article-cover" src="" alt="" style="display:none">
@@ -278,9 +268,9 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
     </div>
     <div class="field-group">
       <label class="field-label">Immagine di copertina</label>
-      <div class="img-upload-area" id="inp-upload-area">
+      <div class="img-upload-area">
         <input type="file" accept="image/*" id="inp-img-file" onchange="handleImageUpload('inp-img-file','inp-img-preview','inp-img-remove','inp-upload-label')">
-        <div class="img-upload-label" id="inp-upload-label">Clicca o trascina un'immagine · <span>Max 1MB</span></div>
+        <div class="img-upload-label" id="inp-upload-label">Clicca o trascina un'immagine · <span>Max 3MB</span></div>
       </div>
       <img id="inp-img-preview" class="img-preview" alt="Anteprima">
       <button class="img-remove" id="inp-img-remove" onclick="removeImage('inp-img-file','inp-img-preview','inp-img-remove','inp-upload-label')">✕ Rimuovi immagine</button>
@@ -325,12 +315,12 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
     <div class="login-box">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
         <div class="login-title">Admin</div>
-        <button onclick="showView('home')" style="background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;transition:color 0.15s" onmouseover="this.style.color='#ff3c3c'" onmouseout="this.style.color='var(--muted)'">✕</button>
+        <button onclick="showView('home')" style="background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1" onmouseover="this.style.color='#ff3c3c'" onmouseout="this.style.color='var(--muted)'">✕</button>
       </div>
       <div class="login-sub">Accesso riservato</div>
       <div class="field-group">
         <label class="field-label">Email</label>
-        <input class="field-input" id="login-email" type="email" placeholder="admin@offgridmusic.com">
+        <input class="field-input" id="login-email" type="email" placeholder="email">
       </div>
       <div class="field-group">
         <label class="field-label">Password</label>
@@ -356,7 +346,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Articoli totali</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-cats">—</div><div class="stat-label">Categorie</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-views">—</div><div class="stat-label">Visualizzazioni totali</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-featured">—</div><div class="stat-label">In evidenza</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-in-evidenza">—</div><div class="stat-label">In evidenza</div></div>
     </div>
     <div class="section-header" style="padding-left:0;padding-right:0;margin-bottom:1rem">
       <span class="section-title">Gestisci articoli</span>
@@ -364,8 +354,8 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
       <button class="nav-btn" onclick="showView('editor')" style="font-size:10px;padding:4px 12px">+ Nuovo</button>
     </div>
     <table class="admin-table">
-      <thead><tr><th>#</th><th>Titolo</th><th>Categoria</th><th>Views</th><th>Data</th><th>Azioni</th></tr></thead>
-      <tbody id="admin-tbody"><tr><td colspan="6" class="loading">Caricamento</td></tr></tbody>
+      <thead><tr><th>#</th><th>Titolo</th><th>Categoria</th><th>Views</th><th>Evidenza</th><th>Data</th><th>Azioni</th></tr></thead>
+      <tbody id="admin-tbody"></tbody>
     </table>
   </div>
   <footer><div class="footer-logo">OFFGRID MUSIC</div><div class="footer-copy">© 2025 — Admin</div></footer>
@@ -386,9 +376,9 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
     </div>
     <div class="field-group">
       <label class="field-label">Immagine di copertina</label>
-      <div class="img-upload-area" id="edit-upload-area">
+      <div class="img-upload-area">
         <input type="file" accept="image/*" id="edit-img-file" onchange="handleImageUpload('edit-img-file','edit-img-preview','edit-img-remove','edit-upload-label')">
-        <div class="img-upload-label" id="edit-upload-label">Clicca o trascina un'immagine · <span>Max 1MB</span></div>
+        <div class="img-upload-label" id="edit-upload-label">Clicca o trascina un'immagine · <span>Max 3MB</span></div>
       </div>
       <img id="edit-img-preview" class="img-preview" alt="Anteprima">
       <button class="img-remove" id="edit-img-remove" onclick="removeImage('edit-img-file','edit-img-preview','edit-img-remove','edit-upload-label')">✕ Rimuovi immagine</button>
@@ -485,11 +475,11 @@ async function loadArticles() {
 
 async function seedDefaultArticles() {
   const defaults = [
-    {title:"La compressione nell'hip-hop moderno",category:"Tecnica",tags:["compressione","hip-hop","mixing"],author:"Staff",date:"2025-03-28",imageUrl:"",excerpt:"Tutto suona schiacciato. Non è un bug, è una feature.",body:"## Il suono schiacciato come scelta estetica\n\nNell'hip-hop contemporaneo, la compressione aggressiva non è un errore tecnico: è un linguaggio.\n\n> Il limitatore non è uno strumento di mastering. È uno strumento compositivo.",featured:true,views:0},
-    {title:"Il campionamento è furto? Una storia del sample",category:"Cultura",tags:["sampling","copyright","storia"],author:"Staff",date:"2025-03-12",imageUrl:"",excerpt:"Un viaggio nell'etica e nella legge del campionamento.",body:"## Origini del sampling\n\nIl campionamento nasce nelle feste di block party del Bronx negli anni '70.\n\n> Rubavamo la musica dei nostri padri per farci la nostra.",featured:false,views:0},
-    {title:"808: anatomia di un drum machine che ha cambiato tutto",category:"Gear",tags:["808","drum machine","roland"],author:"Staff",date:"2025-02-28",imageUrl:"",excerpt:"La Roland TR-808 era considerata un fallimento commerciale.",body:"## Un fallimento che diventa mito\n\nLa TR-808 viene lanciata nel 1980.\n\n> Non importa che non suoni come una batteria vera.",featured:false,views:0},
-    {title:"Pentatonica minore: perché suona 'rap' anche su una chitarra",category:"Teoria",tags:["teoria","pentatonica","armonia"],author:"Staff",date:"2025-02-15",imageUrl:"",excerpt:"La scala che unisce blues, rock e hip-hop.",body:"## Struttura della pentatonica minore\n\nCinque note: tonica, terza minore, quarta, quinta, settima minore.",featured:false,views:0},
-    {title:"Sidechain: non solo kick & bass",category:"Tecnica",tags:["sidechain","produzione","mixing"],author:"Staff",date:"2025-01-30",imageUrl:"",excerpt:"Il sidechain pumping è diventato un elemento compositivo.",body:"## Cos'è il sidechain compression\n\nIl sidechain è una tecnica per cui un compressore è triggerato da un segnale esterno.",featured:false,views:0}
+    {title:"La compressione nell'hip-hop moderno",category:"Tecnica",tags:["compressione","hip-hop"],author:"Staff",date:"2025-03-28",imageUrl:"",excerpt:"Tutto suona schiacciato. Non è un bug, è una feature.",body:"## Il suono schiacciato come scelta estetica\n\nNell'hip-hop contemporaneo, la compressione aggressiva non è un errore tecnico: è un linguaggio.\n\n> Il limitatore non è uno strumento di mastering. È uno strumento compositivo.",featuredPos:1,views:0},
+    {title:"Il campionamento è furto? Una storia del sample",category:"Cultura",tags:["sampling","storia"],author:"Staff",date:"2025-03-12",imageUrl:"",excerpt:"Un viaggio nell'etica e nella legge del campionamento.",body:"## Origini del sampling\n\nIl campionamento nasce nelle feste di block party del Bronx negli anni '70.\n\n> Rubavamo la musica dei nostri padri per farci la nostra.",featuredPos:0,views:0},
+    {title:"808: anatomia di un drum machine che ha cambiato tutto",category:"Gear",tags:["808","roland"],author:"Staff",date:"2025-02-28",imageUrl:"",excerpt:"La Roland TR-808 era considerata un fallimento commerciale.",body:"## Un fallimento che diventa mito\n\nLa TR-808 viene lanciata nel 1980.\n\n> Non importa che non suoni come una batteria vera.",featuredPos:0,views:0},
+    {title:"Pentatonica minore: perché suona 'rap' anche su una chitarra",category:"Teoria",tags:["teoria","pentatonica"],author:"Staff",date:"2025-02-15",imageUrl:"",excerpt:"La scala che unisce blues, rock e hip-hop.",body:"## Struttura della pentatonica minore\n\nCinque note: tonica, terza minore, quarta, quinta, settima minore.",featuredPos:0,views:0},
+    {title:"Sidechain: non solo kick & bass",category:"Tecnica",tags:["sidechain","mixing"],author:"Staff",date:"2025-01-30",imageUrl:"",excerpt:"Il sidechain pumping è diventato un elemento compositivo.",body:"## Cos'è il sidechain compression\n\nIl sidechain è una tecnica per cui un compressore è triggerato da un segnale esterno.",featuredPos:0,views:0}
   ];
   for (const a of defaults) await addDoc(collection(db, 'articles'), a);
 }
@@ -498,6 +488,41 @@ async function fsAddArticle(data) { return (await addDoc(collection(db, 'article
 async function fsUpdateArticle(id, data) { await updateDoc(doc(db, 'articles', id), data); }
 async function fsDeleteArticle(id) { await deleteDoc(doc(db, 'articles', id)); }
 async function fsIncrementViews(id) { await updateDoc(doc(db, 'articles', id), { views: increment(1) }); }
+
+// ---- FEATURED HELPERS ----
+// featuredPos: 0 = non in evidenza, 1-4 = posizione in evidenza
+function getFeatured() {
+  // Restituisce array [pos1, pos2, pos3, pos4] con null se vuoto
+  const result = [null, null, null, null];
+  for (const a of articles) {
+    const p = a.featuredPos || 0;
+    if (p >= 1 && p <= 4) result[p - 1] = a;
+  }
+  return result;
+}
+
+function getOccupiedPositions(excludeId = null) {
+  return articles
+    .filter(a => a.id !== excludeId && a.featuredPos >= 1 && a.featuredPos <= 4)
+    .map(a => a.featuredPos);
+}
+
+async function setFeaturedPos(id, pos) {
+  // Se pos già occupata da altro articolo, libera quell'articolo
+  const existing = articles.find(a => a.id !== id && a.featuredPos === pos);
+  if (existing) {
+    existing.featuredPos = 0;
+    await fsUpdateArticle(existing.id, { featuredPos: 0 });
+  }
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  a.featuredPos = pos;
+  await fsUpdateArticle(id, { featuredPos: pos });
+  renderAdmin();
+  renderHome();
+  showToast(pos === 0 ? 'Rimosso da evidenza.' : `Posizione ${pos} in evidenza impostata!`);
+}
+window.setFeaturedPos = setFeaturedPos;
 
 // ---- IMAGE HANDLING ----
 function resizeImage(file, maxWidth, maxHeight, quality) {
@@ -541,7 +566,7 @@ function removeImage(inputId, previewId, removeId, labelId) {
   document.getElementById(inputId).value = '';
   document.getElementById(previewId).style.display = 'none';
   document.getElementById(removeId).style.display = 'none';
-  document.getElementById(labelId).innerHTML = 'Clicca o trascina un\'immagine · <span>Max 1MB</span>';
+  document.getElementById(labelId).innerHTML = 'Clicca o trascina un\'immagine · <span>Max 3MB</span>';
 }
 window.removeImage = removeImage;
 
@@ -564,28 +589,46 @@ function handleAdminClick(){ adminLoggedIn ? showView('admin') : showView('admin
 window.handleAdminClick = handleAdminClick;
 
 function renderHome(){
-  const featured = articles.find(a=>a.featured) || articles[0];
-  if(featured){
-    document.getElementById('hero-title').textContent = featured.title.toUpperCase();
-    document.getElementById('hero-excerpt').textContent = featured.excerpt;
+  const featured = getFeatured(); // [pos1, pos2, pos3, pos4]
+  const main = featured[0] || articles[0];
+
+  // Hero principale (pos 1)
+  if(main){
+    document.getElementById('hero-title').textContent = main.title.toUpperCase();
+    document.getElementById('hero-excerpt').textContent = main.excerpt;
+    const heroCover = document.getElementById('hero-cover');
+    if(main.imageUrl){ heroCover.src = main.imageUrl; heroCover.style.display = 'block'; }
+    else { heroCover.style.display = 'none'; }
   }
-  const sides = articles.filter(a=>!a.featured).slice(0,3);
-  document.getElementById('side-articles').innerHTML = sides.map((a,i)=>`
+
+  // Colonna destra: pos 2, 3, 4 (se presenti), poi articoli non in evidenza
+  const sideSlots = [featured[1], featured[2], featured[3]].filter(Boolean);
+  // Se ci sono meno di 3 slot in evidenza, riempi con articoli non in evidenza
+  const nonFeatured = articles.filter(a => !a.featuredPos || a.featuredPos === 0);
+  const sideArticles = [...sideSlots];
+  for(const a of nonFeatured){
+    if(sideArticles.length >= 3) break;
+    if(!sideArticles.find(s => s.id === a.id)) sideArticles.push(a);
+  }
+
+  document.getElementById('side-articles').innerHTML = sideArticles.map((a,i)=>`
     <div class="side-article" onclick="openArticle('${a.id}')">
       <div class="side-num">${String(i+2).padStart(2,'0')}</div>
       <div class="side-title">${a.title}</div>
-      <div class="side-meta">${a.category} · ${formatDate(a.date)}</div>
+      <div class="side-meta">${a.category} · ${formatDate(a.date)}${(a.featuredPos||0)>=2?' · <span style="color:var(--accent);font-size:9px">★ POS '+a.featuredPos+'</span>':''}</div>
     </div>`).join('') || '';
-  const nonFeatured = articles.filter(a=>!a.featured);
-  document.getElementById('grid-count').textContent = nonFeatured.length + ' articoli';
-  document.getElementById('article-grid').innerHTML = nonFeatured.length ? nonFeatured.map(a=>`
+
+  // Griglia: tutti gli articoli non in nessuna posizione evidenza
+  const gridArticles = articles.filter(a => !a.featuredPos || a.featuredPos === 0);
+  document.getElementById('grid-count').textContent = gridArticles.length + ' articoli';
+  document.getElementById('article-grid').innerHTML = gridArticles.length ? gridArticles.map(a=>`
     <div class="card" onclick="openArticle('${a.id}')">
       ${a.imageUrl ? `<img class="card-img" src="${a.imageUrl}" alt="${a.title}" onerror="this.style.display='none'">` : ''}
       <div class="card-tags"><span class="tag accent">${a.category}</span>${(a.tags||[]).slice(0,1).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
       <div class="card-title">${a.title}</div>
       <div class="card-excerpt">${a.excerpt}</div>
       <div class="card-footer"><span class="card-date">${formatDate(a.date)}</span><span class="card-arrow">→</span></div>
-    </div>`).join('') : '<div style="padding:2rem;color:var(--muted);font-size:12px;grid-column:1/-1">Nessun articolo pubblicato.</div>';
+    </div>`).join('') : '<div style="padding:2rem;color:var(--muted);font-size:12px;grid-column:1/-1">Tutti gli articoli sono in evidenza.</div>';
 }
 
 function renderArchive(){
@@ -603,21 +646,32 @@ function renderAdmin(){
   document.getElementById('stat-total').textContent = articles.length;
   document.getElementById('stat-cats').textContent = new Set(articles.map(a=>a.category)).size;
   document.getElementById('stat-views').textContent = articles.reduce((s,a)=>s+(a.views||0),0);
-  const f = articles.find(a=>a.featured);
-  document.getElementById('stat-featured').textContent = f ? f.title.slice(0,14)+'…' : '—';
-  document.getElementById('admin-tbody').innerHTML = articles.map((a,i)=>`
-    <tr>
+  const inEv = articles.filter(a=>a.featuredPos && a.featuredPos>=1).length;
+  document.getElementById('stat-in-evidenza').textContent = inEv + '/4';
+
+  const occupied = getOccupiedPositions();
+
+  document.getElementById('admin-tbody').innerHTML = articles.map((a,i)=>{
+    const pos = a.featuredPos || 0;
+    // Bottoni posizione 1-4
+    const posBtns = [1,2,3,4].map(p => {
+      const isActive = pos === p;
+      const isOccupied = !isActive && occupied.includes(p);
+      return `<button class="pos-btn ${isActive?'active':''}" onclick="setFeaturedPos('${a.id}',${isActive?0:p})" title="${isOccupied?'Sostituisce pos '+p:''}">${p}</button>`;
+    }).join('');
+    return `<tr>
       <td style="color:var(--muted);font-size:11px">${String(i+1).padStart(2,'0')}</td>
       <td class="admin-td-title">${a.title}</td>
       <td><span class="tag accent">${a.category}</span></td>
       <td style="color:var(--muted);font-size:11px">◎ ${a.views||0}</td>
+      <td><div class="pos-select">${posBtns}</div></td>
       <td style="color:var(--muted);font-size:11px">${formatDate(a.date)}</td>
       <td>
-        <button class="action-btn ${a.featured?'featured-on':''}" onclick="toggleFeatured('${a.id}')">${a.featured?'★ Evidenza':'☆ Evidenza'}</button>
         <button class="action-btn" onclick="openEdit('${a.id}')">Modifica</button>
         <button class="action-btn danger" onclick="deleteArticle('${a.id}')">Elimina</button>
       </td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
 }
 
 async function openArticle(id){
@@ -637,7 +691,10 @@ async function openArticle(id){
 }
 window.openArticle = openArticle;
 
-function openFeatured(){ const f=articles.find(a=>a.featured)||articles[0]; if(f) openArticle(f.id); }
+function openFeatured(){
+  const f = getFeatured()[0] || articles[0];
+  if(f) openArticle(f.id);
+}
 window.openFeatured = openFeatured;
 
 async function publishArticle(){
@@ -653,7 +710,7 @@ async function publishArticle(){
     date: new Date().toISOString().slice(0,10),
     imageUrl: currentImageBase64 || '',
     excerpt: body.split('\n').find(l=>l.trim()&&!l.startsWith('#')&&!l.startsWith('>'))||body.slice(0,120)+'...',
-    body, featured:false, views:0
+    body, featuredPos: 0, views: 0
   };
   try {
     const newId = await fsAddArticle(data);
@@ -662,7 +719,7 @@ async function publishArticle(){
     removeImage('inp-img-file','inp-img-preview','inp-img-remove','inp-upload-label');
     showToast('Articolo pubblicato!');
     setTimeout(()=>showView('home'),1200);
-  } catch(e){ showToast('Errore durante la pubblicazione: '+e.message); }
+  } catch(e){ showToast('Errore: '+e.message); }
   btn.disabled=false; btn.textContent='Pubblica →';
 }
 window.publishArticle = publishArticle;
@@ -701,27 +758,25 @@ async function saveEdit(){
     imageUrl: editImageBase64 || '',
     body, excerpt: body.split('\n').find(l=>l.trim()&&!l.startsWith('#')&&!l.startsWith('>'))||body.slice(0,120)+'...'
   };
-  try { await fsUpdateArticle(editingId, updated); Object.assign(a, updated); closeModal(); renderAdmin(); showToast('Articolo aggiornato!'); }
-  catch(e){ showToast('Errore salvataggio.'); }
+  try {
+    await fsUpdateArticle(editingId, updated);
+    Object.assign(a, updated);
+    closeModal(); renderAdmin(); renderHome();
+    showToast('Articolo aggiornato!');
+  } catch(e){ showToast('Errore salvataggio.'); }
 }
 window.saveEdit = saveEdit;
 
 async function deleteArticle(id){
   if(!confirm('Eliminare questo articolo?')) return;
-  try { await fsDeleteArticle(id); articles=articles.filter(a=>a.id!==id); renderAdmin(); showToast('Articolo eliminato.'); }
-  catch(e){ showToast('Errore eliminazione.'); }
+  try {
+    await fsDeleteArticle(id);
+    articles = articles.filter(a=>a.id!==id);
+    renderAdmin(); renderHome();
+    showToast('Articolo eliminato.');
+  } catch(e){ showToast('Errore eliminazione.'); }
 }
 window.deleteArticle = deleteArticle;
-
-async function toggleFeatured(id){
-  try {
-    for(const a of articles){ if(a.featured){ await fsUpdateArticle(a.id,{featured:false}); a.featured=false; } }
-    const a = articles.find(x=>x.id===id);
-    if(a){ await fsUpdateArticle(id,{featured:true}); a.featured=true; }
-    renderAdmin(); showToast('Articolo in evidenza aggiornato!');
-  } catch(e){ showToast('Errore.'); }
-}
-window.toggleFeatured = toggleFeatured;
 
 function renderBody(text){
   return text.split('\n').map(line=>{
