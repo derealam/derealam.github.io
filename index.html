@@ -32,7 +32,6 @@ nav a:hover,nav a.active{color:var(--text)}
 .loading{text-align:center;padding:4rem 2rem;color:var(--muted);font-size:12px;letter-spacing:0.15em;text-transform:uppercase}
 .loading::after{content:'';display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-left:8px;animation:pulse 1s ease-in-out infinite}
 
-/* HERO */
 .hero{border-bottom:1px solid var(--border);padding:3rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:0}
 .hero-left{padding-right:2rem;border-right:1px solid var(--border)}
 .hero-kicker{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
@@ -85,6 +84,10 @@ nav a:hover,nav a.active{color:var(--text)}
 .article-body h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(--text);margin:2.5rem 0 1rem;font-style:normal}
 .article-body blockquote{border-left:3px solid var(--accent);padding-left:1.5rem;margin:2rem 0;color:var(--muted);font-style:italic}
 
+/* SHARE BUTTON */
+.share-btn{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border);padding:6px 14px;cursor:pointer;font-family:'Space Mono',monospace;transition:all 0.15s}
+.share-btn:hover{border-color:var(--accent);color:var(--accent)}
+
 .editor-wrap{max-width:780px;margin:0 auto;padding:3rem 2rem}
 .editor-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
 .editor-title-big{font-family:'Orbitron',sans-serif;font-size:1.4rem;letter-spacing:0.08em;color:var(--text)}
@@ -132,18 +135,14 @@ nav a:hover,nav a.active{color:var(--text)}
 .action-btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s;margin-right:4px;margin-bottom:4px}
 .action-btn:hover{border-color:var(--accent);color:var(--accent)}
 .action-btn.danger:hover{border-color:#ff3c3c;color:#ff3c3c}
-.action-btn.featured-on{border-color:var(--accent);color:var(--accent)}
 .admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
 .stat-card{background:var(--surface);border:1px solid var(--border);padding:1.25rem}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--accent);line-height:1}
 .stat-label{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px}
-
-/* FEATURED POSITION SELECTOR */
 .pos-select{display:flex;gap:6px;flex-wrap:wrap}
 .pos-btn{font-family:'Space Mono',monospace;font-size:10px;padding:3px 8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.15s}
 .pos-btn:hover{border-color:var(--accent);color:var(--accent)}
 .pos-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.pos-btn.disabled-pos{opacity:0.3;cursor:not-allowed}
 
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto}
 .modal-overlay.open{display:flex}
@@ -162,33 +161,25 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 .toast.show{transform:translateY(0);opacity:1}
 
 @media(max-width:768px){
-  header{padding:0 1rem}
-  .logo{font-size:1.2rem}
-  nav .nav-links{display:none!important}
-  nav .nav-btn{display:none!important}
+  header{padding:0 1rem}.logo{font-size:1.2rem}
+  nav .nav-links{display:none!important}nav .nav-btn{display:none!important}
   .hamburger{display:flex}
   .hero{grid-template-columns:1fr;padding:2rem 1rem}
   .hero-left{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:2rem;margin-bottom:2rem}
-  .hero-title{font-size:1.8rem}
-  .hero-right{padding-left:0}
-  .grid{grid-template-columns:1fr}
-  .card{border-right:none}.card:nth-child(3n){border-right:none}
-  .section-header{padding:1rem}
-  .archive-wrap{padding:1rem}
+  .hero-title{font-size:1.8rem}.hero-right{padding-left:0}
+  .grid{grid-template-columns:1fr}.card{border-right:none}.card:nth-child(3n){border-right:none}
+  .section-header{padding:1rem}.archive-wrap{padding:1rem}
   .field-row{grid-template-columns:1fr}
   .editor-wrap,.article-wrap,.login-wrap{padding:2rem 1rem}
-  .admin-wrap{padding:1rem}
-  .admin-stats{grid-template-columns:1fr 1fr}
+  .admin-wrap{padding:1rem}.admin-stats{grid-template-columns:1fr 1fr}
   .admin-table thead{display:none}
   .admin-table tr{display:block;border-bottom:1px solid var(--border);padding:0.75rem 0}
   .admin-table td{display:block;border:none;padding:4px 0}
-  .admin-td-title{max-width:100%}
-  .article-title{font-size:1.6rem}
+  .admin-td-title{max-width:100%}.article-title{font-size:1.6rem}
   .modal-overlay{padding:1rem 0.5rem}
 }
 @media(max-width:480px){
-  .hero-title{font-size:1.5rem}
-  .article-title{font-size:1.4rem}
+  .hero-title{font-size:1.5rem}.article-title{font-size:1.4rem}
   .admin-stats{grid-template-columns:1fr 1fr}
 }
 </style>
@@ -196,13 +187,13 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 <body>
 
 <header>
-  <a class="logo" onclick="showView('home')">OFFGRID MUSIC</a>
+  <a class="logo" onclick="navigate('home')">OFFGRID MUSIC</a>
   <nav>
     <span class="nav-links" style="display:flex;align-items:center;gap:1.5rem">
-      <a onclick="showView('home')" id="nav-home" class="active">Home</a>
-      <a onclick="showView('archive')" id="nav-archive">Archivio</a>
-      <a onclick="showView('about')" id="nav-about">About</a>
-      <button class="nav-btn" id="scrivi-btn" onclick="showView('editor')" style="display:none">+ Scrivi</button>
+      <a onclick="navigate('home')" id="nav-home" class="active">Home</a>
+      <a onclick="navigate('archive')" id="nav-archive">Archivio</a>
+      <a onclick="navigate('about')" id="nav-about">About</a>
+      <button class="nav-btn" id="scrivi-btn" onclick="navigate('editor')" style="display:none">+ Scrivi</button>
       <button class="nav-btn admin-btn" id="admin-nav-btn" onclick="handleAdminClick()">⚙ Admin</button>
     </span>
     <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -210,10 +201,10 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 </header>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a onclick="showView('home');closeMobileMenu()">Home</a>
-  <a onclick="showView('archive');closeMobileMenu()">Archivio</a>
-  <a onclick="showView('about');closeMobileMenu()">About</a>
-  <button class="mob-write" id="scrivi-mob-btn" onclick="showView('editor');closeMobileMenu()" style="display:none">+ Scrivi articolo</button>
+  <a onclick="navigate('home');closeMobileMenu()">Home</a>
+  <a onclick="navigate('archive');closeMobileMenu()">Archivio</a>
+  <a onclick="navigate('about');closeMobileMenu()">About</a>
+  <button class="mob-write" id="scrivi-mob-btn" onclick="navigate('editor');closeMobileMenu()" style="display:none">+ Scrivi articolo</button>
   <button onclick="handleAdminClick();closeMobileMenu()">⚙ Admin</button>
 </div>
 
@@ -241,12 +232,14 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
 <!-- ARTICLE -->
 <div id="view-article" class="view">
   <div class="article-wrap">
-    <a class="article-back" onclick="showView('home')">← Torna a Home</a>
+    <a class="article-back" onclick="navigate('home')">← Torna a Home</a>
     <div class="article-kicker" id="art-kicker"></div>
     <h1 class="article-title" id="art-title"></h1>
     <div class="article-meta">
-      <span id="art-date"></span><span id="art-tags"></span>
+      <span id="art-date"></span>
+      <span id="art-tags"></span>
       <span class="views-badge" id="art-views"></span>
+      <button class="share-btn" id="share-btn" onclick="shareArticle()">↗ Condividi</button>
     </div>
     <img id="art-cover" class="article-cover" src="" alt="" style="display:none">
     <div class="article-body" id="art-body"></div>
@@ -258,7 +251,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   <div class="editor-wrap">
     <div class="editor-header">
       <span class="editor-title-big">Nuovo articolo</span>
-      <a class="article-back" onclick="showView('home')" style="margin-bottom:0">← Annulla</a>
+      <a class="article-back" onclick="navigate('home')" style="margin-bottom:0">← Annulla</a>
     </div>
     <div class="field-group"><label class="field-label">Titolo *</label><input class="field-input" id="inp-title" placeholder="Il titolo dell'articolo..." type="text"></div>
     <div class="field-row">
@@ -315,7 +308,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
     <div class="login-box">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
         <div class="login-title">Admin</div>
-        <button onclick="showView('home')" style="background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1" onmouseover="this.style.color='#ff3c3c'" onmouseout="this.style.color='var(--muted)'">✕</button>
+        <button onclick="navigate('home')" style="background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1" onmouseover="this.style.color='#ff3c3c'" onmouseout="this.style.color='var(--muted)'">✕</button>
       </div>
       <div class="login-sub">Accesso riservato</div>
       <div class="field-group">
@@ -345,13 +338,13 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
     <div class="admin-stats">
       <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Articoli totali</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-cats">—</div><div class="stat-label">Categorie</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-views">—</div><div class="stat-label">Visualizzazioni totali</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-views">—</div><div class="stat-label">Visualizzazioni</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-in-evidenza">—</div><div class="stat-label">In evidenza</div></div>
     </div>
     <div class="section-header" style="padding-left:0;padding-right:0;margin-bottom:1rem">
       <span class="section-title">Gestisci articoli</span>
       <span class="section-line"></span>
-      <button class="nav-btn" onclick="showView('editor')" style="font-size:10px;padding:4px 12px">+ Nuovo</button>
+      <button class="nav-btn" onclick="navigate('editor')" style="font-size:10px;padding:4px 12px">+ Nuovo</button>
     </div>
     <table class="admin-table">
       <thead><tr><th>#</th><th>Titolo</th><th>Categoria</th><th>Views</th><th>Evidenza</th><th>Data</th><th>Azioni</th></tr></thead>
@@ -413,6 +406,47 @@ let adminLoggedIn = false;
 let editingId = null;
 let currentImageBase64 = null;
 let editImageBase64 = null;
+let currentArticleId = null; // traccia articolo aperto per share
+
+// ---- HASH ROUTING ----
+function navigate(view, articleId) {
+  if (articleId) {
+    window.location.hash = '#/articolo/' + articleId;
+  } else {
+    window.location.hash = '#/' + view;
+  }
+}
+window.navigate = navigate;
+
+function handleRoute() {
+  const hash = window.location.hash || '#/home';
+  const parts = hash.replace('#/', '').split('/');
+  const view = parts[0];
+
+  if (view === 'articolo' && parts[1]) {
+    openArticleById(parts[1]);
+  } else if (['home','archive','about','editor','adminlogin','admin'].includes(view)) {
+    showView(view);
+  } else {
+    showView('home');
+  }
+}
+
+window.addEventListener('hashchange', handleRoute);
+
+function showView(name) {
+  if(name === 'admin' && !adminLoggedIn){ showView('adminlogin'); return; }
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  const nav = document.getElementById('nav-'+name);
+  if(nav) nav.classList.add('active');
+  if(name==='home') renderHome();
+  if(name==='archive') renderArchive();
+  if(name==='admin') renderAdmin();
+  window.scrollTo(0,0);
+}
+window.showView = showView;
 
 // ---- AUTH ----
 onAuthStateChanged(auth, user => {
@@ -440,7 +474,7 @@ async function doLogin(){
     await signInWithEmailAndPassword(auth, email, pw);
     document.getElementById('login-pw').value = '';
     document.getElementById('login-error').style.display = 'none';
-    showView('admin');
+    navigate('admin');
   } catch(e) {
     document.getElementById('login-error').style.display = 'block';
   }
@@ -450,7 +484,7 @@ window.doLogin = doLogin;
 
 async function doLogout(){
   await signOut(auth);
-  showView('home');
+  navigate('home');
   showToast('Uscito dal pannello admin.');
 }
 window.doLogout = doLogout;
@@ -470,7 +504,7 @@ async function loadArticles() {
     console.error('Firestore error:', e);
     showToast('Errore connessione database.');
   }
-  renderHome();
+  handleRoute();
 }
 
 async function seedDefaultArticles() {
@@ -489,10 +523,8 @@ async function fsUpdateArticle(id, data) { await updateDoc(doc(db, 'articles', i
 async function fsDeleteArticle(id) { await deleteDoc(doc(db, 'articles', id)); }
 async function fsIncrementViews(id) { await updateDoc(doc(db, 'articles', id), { views: increment(1) }); }
 
-// ---- FEATURED HELPERS ----
-// featuredPos: 0 = non in evidenza, 1-4 = posizione in evidenza
+// ---- FEATURED ----
 function getFeatured() {
-  // Restituisce array [pos1, pos2, pos3, pos4] con null se vuoto
   const result = [null, null, null, null];
   for (const a of articles) {
     const p = a.featuredPos || 0;
@@ -508,23 +540,18 @@ function getOccupiedPositions(excludeId = null) {
 }
 
 async function setFeaturedPos(id, pos) {
-  // Se pos già occupata da altro articolo, libera quell'articolo
   const existing = articles.find(a => a.id !== id && a.featuredPos === pos);
-  if (existing) {
-    existing.featuredPos = 0;
-    await fsUpdateArticle(existing.id, { featuredPos: 0 });
-  }
+  if (existing) { existing.featuredPos = 0; await fsUpdateArticle(existing.id, { featuredPos: 0 }); }
   const a = articles.find(x => x.id === id);
   if (!a) return;
   a.featuredPos = pos;
   await fsUpdateArticle(id, { featuredPos: pos });
-  renderAdmin();
-  renderHome();
-  showToast(pos === 0 ? 'Rimosso da evidenza.' : `Posizione ${pos} in evidenza impostata!`);
+  renderAdmin(); renderHome();
+  showToast(pos === 0 ? 'Rimosso da evidenza.' : `Posizione ${pos} impostata!`);
 }
 window.setFeaturedPos = setFeaturedPos;
 
-// ---- IMAGE HANDLING ----
+// ---- IMAGE ----
 function resizeImage(file, maxWidth, maxHeight, quality) {
   return new Promise((resolve) => {
     const reader = new FileReader();
@@ -570,29 +597,13 @@ function removeImage(inputId, previewId, removeId, labelId) {
 }
 window.removeImage = removeImage;
 
-// ---- UI ----
-function showView(name) {
-  if(name === 'admin' && !adminLoggedIn){ showView('adminlogin'); return; }
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
-  const nav = document.getElementById('nav-'+name);
-  if(nav) nav.classList.add('active');
-  if(name==='home') renderHome();
-  if(name==='archive') renderArchive();
-  if(name==='admin') renderAdmin();
-  window.scrollTo(0,0);
-}
-window.showView = showView;
-
-function handleAdminClick(){ adminLoggedIn ? showView('admin') : showView('adminlogin'); }
+// ---- RENDER ----
+function handleAdminClick(){ adminLoggedIn ? navigate('admin') : navigate('adminlogin'); }
 window.handleAdminClick = handleAdminClick;
 
 function renderHome(){
-  const featured = getFeatured(); // [pos1, pos2, pos3, pos4]
+  const featured = getFeatured();
   const main = featured[0] || articles[0];
-
-  // Hero principale (pos 1)
   if(main){
     document.getElementById('hero-title').textContent = main.title.toUpperCase();
     document.getElementById('hero-excerpt').textContent = main.excerpt;
@@ -600,29 +611,23 @@ function renderHome(){
     if(main.imageUrl){ heroCover.src = main.imageUrl; heroCover.style.display = 'block'; }
     else { heroCover.style.display = 'none'; }
   }
-
-  // Colonna destra: pos 2, 3, 4 (se presenti), poi articoli non in evidenza
   const sideSlots = [featured[1], featured[2], featured[3]].filter(Boolean);
-  // Se ci sono meno di 3 slot in evidenza, riempi con articoli non in evidenza
   const nonFeatured = articles.filter(a => !a.featuredPos || a.featuredPos === 0);
   const sideArticles = [...sideSlots];
   for(const a of nonFeatured){
     if(sideArticles.length >= 3) break;
     if(!sideArticles.find(s => s.id === a.id)) sideArticles.push(a);
   }
-
   document.getElementById('side-articles').innerHTML = sideArticles.map((a,i)=>`
-    <div class="side-article" onclick="openArticle('${a.id}')">
+    <div class="side-article" onclick="navigate('home','${a.id}')">
       <div class="side-num">${String(i+2).padStart(2,'0')}</div>
       <div class="side-title">${a.title}</div>
       <div class="side-meta">${a.category} · ${formatDate(a.date)}</div>
     </div>`).join('') || '';
-
-  // Griglia: tutti gli articoli non in nessuna posizione evidenza
   const gridArticles = articles.filter(a => !a.featuredPos || a.featuredPos === 0);
   document.getElementById('grid-count').textContent = gridArticles.length + ' articoli';
   document.getElementById('article-grid').innerHTML = gridArticles.length ? gridArticles.map(a=>`
-    <div class="card" onclick="openArticle('${a.id}')">
+    <div class="card" onclick="navigate('home','${a.id}')">
       ${a.imageUrl ? `<img class="card-img" src="${a.imageUrl}" alt="${a.title}" onerror="this.style.display='none'">` : ''}
       <div class="card-tags"><span class="tag accent">${a.category}</span>${(a.tags||[]).slice(0,1).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
       <div class="card-title">${a.title}</div>
@@ -634,7 +639,7 @@ function renderHome(){
 function renderArchive(){
   document.getElementById('archive-count').textContent = articles.length + ' articoli';
   document.getElementById('archive-list').innerHTML = articles.length ? articles.map((a,i)=>`
-    <div class="archive-row" onclick="openArticle('${a.id}')">
+    <div class="archive-row" onclick="navigate('home','${a.id}')">
       <span class="archive-num">${String(i+1).padStart(2,'0')}</span>
       <span class="archive-title">${a.title}</span>
       <div class="archive-tags"><span class="tag accent">${a.category}</span></div>
@@ -648,12 +653,9 @@ function renderAdmin(){
   document.getElementById('stat-views').textContent = articles.reduce((s,a)=>s+(a.views||0),0);
   const inEv = articles.filter(a=>a.featuredPos && a.featuredPos>=1).length;
   document.getElementById('stat-in-evidenza').textContent = inEv + '/4';
-
   const occupied = getOccupiedPositions();
-
   document.getElementById('admin-tbody').innerHTML = articles.map((a,i)=>{
     const pos = a.featuredPos || 0;
-    // Bottoni posizione 1-4
     const posBtns = [1,2,3,4].map(p => {
       const isActive = pos === p;
       const isOccupied = !isActive && occupied.includes(p);
@@ -674,9 +676,11 @@ function renderAdmin(){
   }).join('');
 }
 
-async function openArticle(id){
-  const a = articles.find(x=>x.id===id);
-  if(!a) return;
+// ---- ARTICLE ----
+function openArticleById(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) { showView('home'); return; }
+  currentArticleId = id;
   document.getElementById('art-kicker').textContent = a.category;
   document.getElementById('art-title').textContent = a.title;
   document.getElementById('art-date').textContent = formatDate(a.date) + (a.author?' · '+a.author:'');
@@ -684,19 +688,43 @@ async function openArticle(id){
   const cover = document.getElementById('art-cover');
   if(a.imageUrl){ cover.src=a.imageUrl; cover.style.display='block'; } else { cover.style.display='none'; }
   document.getElementById('art-body').innerHTML = renderBody(a.body);
-  a.views = (a.views||0) + 1;
-  document.getElementById('art-views').textContent = a.views + ' letture';
-  fsIncrementViews(id).catch(()=>{});
+  document.getElementById('art-views').textContent = (a.views||0) + ' letture';
   showView('article');
+  // Incrementa views solo se NON è admin
+  if (!adminLoggedIn) {
+    a.views = (a.views||0) + 1;
+    document.getElementById('art-views').textContent = a.views + ' letture';
+    fsIncrementViews(id).catch(()=>{});
+  }
 }
+window.openArticleById = openArticleById;
+
+function openArticle(id) { navigate('home', id); }
 window.openArticle = openArticle;
 
 function openFeatured(){
   const f = getFeatured()[0] || articles[0];
-  if(f) openArticle(f.id);
+  if(f) navigate('home', f.id);
 }
 window.openFeatured = openFeatured;
 
+// ---- SHARE ----
+async function shareArticle() {
+  const url = window.location.href;
+  const a = articles.find(x => x.id === currentArticleId);
+  const title = a ? a.title : 'OFFGRID MUSIC';
+  if (navigator.share) {
+    try {
+      await navigator.share({ title, url });
+    } catch(e) { /* utente ha annullato */ }
+  } else {
+    await navigator.clipboard.writeText(url);
+    showToast('Link copiato negli appunti!');
+  }
+}
+window.shareArticle = shareArticle;
+
+// ---- EDITOR ----
 async function publishArticle(){
   const title = document.getElementById('inp-title').value.trim();
   const body = document.getElementById('inp-body').value.trim();
@@ -718,7 +746,7 @@ async function publishArticle(){
     ['inp-title','inp-body','inp-tags','inp-author'].forEach(id=>document.getElementById(id).value='');
     removeImage('inp-img-file','inp-img-preview','inp-img-remove','inp-upload-label');
     showToast('Articolo pubblicato!');
-    setTimeout(()=>showView('home'),1200);
+    setTimeout(()=>navigate('home'),1200);
   } catch(e){ showToast('Errore: '+e.message); }
   btn.disabled=false; btn.textContent='Pubblica →';
 }
