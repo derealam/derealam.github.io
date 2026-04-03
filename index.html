@@ -615,7 +615,7 @@ function renderHome(){
     <div class="side-article" onclick="openArticle('${a.id}')">
       <div class="side-num">${String(i+2).padStart(2,'0')}</div>
       <div class="side-title">${a.title}</div>
-      <div class="side-meta">${a.category} · ${formatDate(a.date)}${(a.featuredPos||0)>=2?' · <span style="color:var(--accent);font-size:9px">★ POS '+a.featuredPos+'</span>':''}</div>
+      <div class="side-meta">${a.category} · ${formatDate(a.date)}</div>
     </div>`).join('') || '';
 
   // Griglia: tutti gli articoli non in nessuna posizione evidenza
