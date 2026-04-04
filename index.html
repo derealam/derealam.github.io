@@ -197,6 +197,11 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   .hero-title{font-size:1.5rem}.article-title{font-size:1.4rem}
   .admin-stats{grid-template-columns:1fr 1fr}
 }
+
+.back-top{position:fixed;bottom:2rem;right:2rem;width:42px;height:42px;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:1.1rem;display:none;align-items:center;justify-content:center;z-index:50;transition:background 0.15s}
+.back-top:hover{background:#fff;color:#000}
+.back-top.visible{display:flex}
+  
 </style>
 </head>
 <body>
@@ -306,11 +311,10 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   <div class="article-wrap">
     <div class="article-kicker"><span class="dot"></span> Chi sono</div>
     <h1 class="article-title">OFFGRID MUSIC</h1>
-    <div class="article-meta"><span>Musica · Tecnica · Strada</span></div>
     <div class="article-body">
       <h2>Chi sono</h2>
       <p>Sono un produttore musicale con 6 anni di esperienza (e due dischi d’oro nel 2026). </p>
-      <h2>Obbiettivo</h2>
+      <img src="about-photo.jpg" alt="Offgrid Music" style="width:100%;max-height:400px;object-fit:cover;margin:2rem 0;display:block;">
       <p>Ho tanta passione per il marketing e qui scriveró di musica e commenterò le nuove uscite italiane ed internazionali sia dal lato musicale, sia comunicativo.</p>
       <!--<p>Offgrid Music è uno spazio editoriale dedicato all'analisi tecnica della musica street. Parliamo di produzione, teoria, gear e cultura — con il linguaggio di chi sta nei basement e nei cypher, non nelle redazioni.</p>
       <h2>LA VISIONE</h2>
@@ -400,6 +404,7 @@ footer{border-top:1px solid var(--border);padding:2rem;display:flex;justify-cont
   </div>
 </div>
 
+<button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="toast" id="toast"></div>
 
 <script type="module">
@@ -507,6 +512,10 @@ async function doLogout(){
   showToast('Uscito dal pannello admin.');
 }
 window.doLogout = doLogout;
+
+window.addEventListener('scroll', () => {
+  document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
+});
 
 // ---- FIRESTORE ----
 async function loadArticles() {
@@ -831,7 +840,9 @@ function renderBody(text){
   let para = [];
   let inList = false;
 
-  const fmt = s => s.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  const fmt = s => s
+  .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+  .replace(/\/\/(.*?)\/\//g,'<em>$1</em>');
 
   const flushPara = () => {
     if(para.length){ result.push(`<p>${para.map(fmt).join('<br>')}</p>`); para = []; }
