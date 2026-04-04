@@ -93,7 +93,9 @@ nav a:hover,nav a.active{color:var(--text)}
 .article-meta{font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
 .article-cover{width:100%;max-height:400px;object-fit:cover;margin-bottom:2rem;display:block}
 .article-body{font-family:'Georgia',serif;font-size:17px;line-height:1.9;color:var(--text)}
-.article-body p{margin-bottom:1.5rem}
+.article-body p{margin-bottom:0.8rem}
+.article-body ul{margin:0 0 1rem 1.5rem;padding:0}
+.article-body li{margin-bottom:0.5rem;line-height:1.7}
 .article-body h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.06em;color:var(--text);margin:2.5rem 0 1rem;font-style:normal}
 .article-body blockquote{border-left:3px solid var(--accent);padding-left:1.5rem;margin:2rem 0;color:var(--muted);font-style:italic}
 
@@ -824,20 +826,40 @@ async function deleteArticle(id){
 window.deleteArticle = deleteArticle;
 
 function renderBody(text){
-  const blocks = text.split(/\n\n+/);
-  return blocks.map(block => {
-    const lines = block.split('\n');
-    return lines.map(line => {
-      if(line.startsWith('## ')) return `<h2>${line.slice(3)}</h2>`;
-      if(line.startsWith('> ')) return `<blockquote>${line.slice(2)}</blockquote>`;
-      if(line.startsWith('- ')) return `<li>${line.slice(2).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</li>`;
-      return line.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
-    }).join('<br>').replace(/(<li>.*?<\/li>)(<br>)*/g, '$1');
-  }).map(block => {
-    if(block.startsWith('<h2>') || block.startsWith('<blockquote>')) return block;
-    if(block.includes('<li>')) return `<ul>${block.replace(/<br>/g,'')}</ul>`;
-    return `<p>${block}</p>`;
-  }).join('');
+  const lines = text.split('\n');
+  const result = [];
+  let para = [];
+  let inList = false;
+
+  const fmt = s => s.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+
+  const flushPara = () => {
+    if(para.length){ result.push(`<p>${para.map(fmt).join('<br>')}</p>`); para = []; }
+  };
+  const flushList = () => {
+    if(inList){ result.push('</ul>'); inList = false; }
+  };
+
+  for(const line of lines){
+    if(line.startsWith('## ')){
+      flushPara(); flushList();
+      result.push(`<h2>${fmt(line.slice(3))}</h2>`);
+    } else if(line.startsWith('> ')){
+      flushPara(); flushList();
+      result.push(`<blockquote>${fmt(line.slice(2))}</blockquote>`);
+    } else if(line.startsWith('- ')){
+      flushPara();
+      if(!inList){ result.push('<ul>'); inList = true; }
+      result.push(`<li>${fmt(line.slice(2))}</li>`);
+    } else if(line.trim() === ''){
+      flushList(); flushPara();
+    } else {
+      flushList();
+      para.push(line);
+    }
+  }
+  flushPara(); flushList();
+  return result.join('');
 }
 
 function formatDate(d){
